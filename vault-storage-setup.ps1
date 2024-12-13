@@ -51,18 +51,24 @@ if (-Not (Test-Path -Path $vaultBinaryPath)) {
     Exit 1
 }
 
-# Start Vault Server as a background process
-Write-Host "Starting Vault server on port 8200..."
-$serviceArgs = "-config=$vaultConfigPath"
-Start-Process -FilePath $vaultBinaryPath -ArgumentList $serviceArgs -NoNewWindow -PassThru
+Write-Host "Starting Vault server on port 8200 and capturing output..."
+$vaultLogPath = "C:\Users\$env:USERNAME\Downloads\vault_output.txt"
+$vaultProcess = Start-Process -FilePath $vaultBinaryPath -ArgumentList "server", "-config=`"$vaultConfigPath`"" -WindowStyle Hidden -PassThru -RedirectStandardOutput $vaultLogPath
 
-# Wait for Vault to be ready (add delay to allow Vault to start properly)
-Write-Host "Waiting for Vault to initialize..."
-Start-Sleep -Seconds 15  # Adjust if needed based on system performance
+# Wait for Vault server to initialize
+Write-Host "Waiting for Vault server to initialize..."
+Start-Sleep -Seconds 10
 
 # Initialize Vault
 Write-Host "Initializing Vault..."
 $initOutput = vault operator init 2>&1 | Out-String
+
+# Validate initialization output
+if (-Not $initOutput) {
+    Write-Host "Error: Failed to initialize Vault."
+    Stop-Process -Id $vaultProcess.Id -Force
+    Exit
+}
 
 # Parse the unseal keys and root token from the initialization output
 $unsealKeys = @()
@@ -79,7 +85,7 @@ foreach ($line in $initOutput -split "`n") {
 # Validate parsing
 if ($unsealKeys.Count -ne 5 -or -Not $rootToken) {
     Write-Host "Error: Could not extract all unseal keys or the root token from the Vault output."
-    Stop-Process -Id $vaultProcessId -Force
+    Stop-Process -Id $vaultProcess.Id -Force
     Exit
 }
 
@@ -130,6 +136,13 @@ Write-Host "Vault Token, VAULT_ADDR, and Unseal Keys set as system environment v
 
 # Enable Vault secrets engine (if Vault is unsealed and token is set correctly)
 vault secrets enable -path=secret kv
+
+# Start Vault service (if Vault is installed as a service)
+Write-Host "Starting Vault service..."
+Start-Service -Name "Vault"
+
+Write-Host "Vault service started successfully."
+
 
 
 
