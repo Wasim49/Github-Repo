@@ -60,16 +60,9 @@ Start-Process -FilePath $vaultBinaryPath -ArgumentList $serviceArgs -NoNewWindow
 Write-Host "Waiting for Vault to initialize..."
 Start-Sleep -Seconds 15  # Adjust if needed based on system performance
 
-
 # Initialize Vault
 Write-Host "Initializing Vault..."
 $initOutput = vault operator init 2>&1 | Out-String
-
-# Validate initialization output
-if (-Not $initOutput) {
-    Write-Host "Error: Failed to initialize Vault."
-    Exit 1
-}
 
 # Parse the unseal keys and root token from the initialization output
 $unsealKeys = @()
@@ -86,7 +79,8 @@ foreach ($line in $initOutput -split "`n") {
 # Validate parsing
 if ($unsealKeys.Count -ne 5 -or -Not $rootToken) {
     Write-Host "Error: Could not extract all unseal keys or the root token from the Vault output."
-    Exit 1
+    Stop-Process -Id $vaultProcessId -Force
+    Exit
 }
 
 # Save unseal keys and root token to a JSON file
@@ -99,35 +93,43 @@ $envVars = @{
 }
 $envVars | ConvertTo-Json -Depth 2 | Set-Content "C:\Users\$env:USERNAME\Downloads\vault_config.json"
 
-Write-Host "Vault initialized successfully and running as a process. Unseal keys and root token saved to C:\Users\$env:USERNAME\Downloads\vault_config.json."
+Write-Host "Vault initialized successfully and running in background. Unseal keys and root token saved to C:\Users\$env:USERNAME\Downloads\vault_config.json."
 
 # Provide feedback to the user
-Write-Host "Vault is initialized. You can find the initialization details at C:\Users\$env:USERNAME\Downloads\vault_config.json."
+Write-Host "Vault is ready. You can find the initialization details at C:\Users\$env:USERNAME\Downloads\vault_config.json."
 
-# Enable KV secrets engine
-Write-Host "Enabling KV secrets engine..."
-$kvEnableCommand = "$vaultBinaryPath secrets enable -path=secret/ kv"
-Invoke-Expression $kvEnableCommand
+# Path to the JSON configuration file
+$jsonFilePath = "C:\Users\$env:USERNAME\Downloads\vault_config.json"
 
-# Set up Vault as a Windows service
-$serviceName = "Vault"
-Write-Host "Setting up Vault as a Windows service..."
-New-Service -Name $serviceName -BinaryPathName "$vaultBinaryPath $serviceArgs" -DisplayName "Vault" -Description "HashiCorp Vault" -StartupType Automatic
+# Read and parse the JSON file, then extract the unseal keys, VAULT_TOKEN, and VAULT_ADDR
+$vaultConfig = Get-Content -Path $jsonFilePath -Raw | ConvertFrom-Json
 
-# Start the Vault service and ensure it starts correctly
-Write-Host "Starting Vault service..."
-Start-Service -Name $serviceName
-Start-Sleep -Seconds 5  # Allow the service to fully start
+# Grabbing the Vault token, VAULT_ADDR, and the first three unseal keys (from the JSON configuration)
+$vaultToken = $vaultConfig.VAULT_TOKEN
+$vaultAddr = $vaultConfig.VAULT_ADDR
+$unsealKeys = $vaultConfig.UNSEAL_KEYS[0..2]
 
-# Verify if Vault service is running
-$serviceStatus = Get-Service -Name $serviceName
-if ($serviceStatus.Status -ne 'Running') {
-    Write-Host "Error: Vault service did not start. Current status: $($serviceStatus.Status)"
-    Exit 1
-}
+# Combine the unseal keys into one string (delimited by commas)
+$unsealKeysString = $unsealKeys -join ','
 
-# Provide final feedback
-Write-Host "Vault is now running as a service, and the KV secrets engine is enabled."
+# Unseal Vault using the first three unseal keys
+$unsealKeys | ForEach-Object { vault operator unseal $_ }
+
+# Create Vault token, VAULT_ADDR, and unseal keys as system-wide environment variables
+[System.Environment]::SetEnvironmentVariable("VAULT_TOKEN", $vaultToken, [System.EnvironmentVariableTarget]::Machine)
+[System.Environment]::SetEnvironmentVariable("VAULT_ADDR", $vaultAddr, [System.EnvironmentVariableTarget]::Machine)
+[System.Environment]::SetEnvironmentVariable("VAULT_UNSEAL_KEYS", $unsealKeysString, [System.EnvironmentVariableTarget]::Machine)
+
+# Load the system environment variables into the current session
+$env:VAULT_TOKEN = [System.Environment]::GetEnvironmentVariable("VAULT_TOKEN", "Machine")
+$env:VAULT_ADDR = [System.Environment]::GetEnvironmentVariable("VAULT_ADDR", "Machine")
+$env:VAULT_UNSEAL_KEYS = [System.Environment]::GetEnvironmentVariable("VAULT_UNSEAL_KEYS", "Machine")
+
+# Provide feedback that the variables are set
+Write-Host "Vault Token, VAULT_ADDR, and Unseal Keys set as system environment variables."
+
+# Enable Vault secrets engine (if Vault is unsealed and token is set correctly)
+vault secrets enable -path=secret kv
 
 
 
