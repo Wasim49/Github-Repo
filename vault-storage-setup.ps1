@@ -32,17 +32,17 @@ if (-Not (Test-Path -Path $vaultDataPath)) {
     New-Item -ItemType Directory -Path $vaultDataPath -Force
 }
 
-# # Stop any existing Vault process running on port 8200
-# Write-Host "Checking if Vault is already running on port 8200..."
-# $existingVaultProcess = Get-NetTCPConnection -LocalPort 8200
-# if ($existingVaultProcess) {
-#     Write-Host "Vault is already running. Stopping the existing Vault process..."
-#     # Get the process ID (PID) of the running Vault process
-#     $vaultProcessId = $existingVaultProcess.OwningProcess
-#     # Stop the Vault process
-#     Stop-Process -Id $vaultProcessId -Force
-#     Write-Host "Vault process stopped."
-# }
+# Stop any existing Vault process running on port 8200
+Write-Host "Checking if Vault is already running on port 8200..."
+$existingVaultProcess = Get-NetTCPConnection -LocalPort 8200
+if ($existingVaultProcess) {
+    Write-Host "Vault is already running. Stopping the existing Vault process..."
+    # Get the process ID (PID) of the running Vault process
+    $vaultProcessId = $existingVaultProcess.OwningProcess
+    # Stop the Vault process
+    Stop-Process -Id $vaultProcessId -Force
+    Write-Host "Vault process stopped."
+}
 
 # Start Vault in server mode using the Chocolatey-installed binary
 $vaultBinaryPath = "C:\ProgramData\chocolatey\bin\vault.exe"
