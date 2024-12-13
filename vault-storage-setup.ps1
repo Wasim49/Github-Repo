@@ -44,29 +44,62 @@ if ($existingVaultProcess) {
     Write-Host "Vault process stopped."
 }
 
-# Start Vault in server mode using the Chocolatey-installed binary
+# Path to the Vault binary
 $vaultBinaryPath = "C:\ProgramData\chocolatey\bin\vault.exe"
 if (-Not (Test-Path -Path $vaultBinaryPath)) {
     Write-Host "Error: Vault executable not found at $vaultBinaryPath. Ensure Vault is installed via Chocolatey."
     Exit 1
 }
 
-Write-Host "Starting Vault server on port 8200 and capturing output..."
-$vaultLogPath = "C:\Users\$env:USERNAME\Downloads\vault_output.txt"
-$vaultProcess = Start-Process -FilePath $vaultBinaryPath -ArgumentList "server", "-config=`"$vaultConfigPath`"" -WindowStyle Hidden -PassThru -RedirectStandardOutput $vaultLogPath
+# Install NSSM using Chocolatey
+Write-Host "Installing NSSM using Chocolatey..."
+choco install nssm -y
 
-# Wait for Vault server to initialize
-Write-Host "Waiting for Vault server to initialize..."
-Start-Sleep -Seconds 10
+# Set the VAULT_HOME environment variable
+$env:VAULT_HOME = "${env:ProgramFiles}\Vault"
 
-# Initialize Vault
+# Use nssm to create a new Windows service for Vault
+Write-Host "Creating Vault service using NSSM..."
+$nssmPath = "C:\ProgramData\chocolatey\bin\nssm.exe"
+$nssmServiceName = "MS_VAULT"
+
+# Install the Vault service using NSSM
+& $nssmPath install $nssmServiceName "$vaultBinaryPath" "server -config=$vaultConfigPath"
+
+# Set the working directory for Vault
+& $nssmPath set $nssmServiceName AppDirectory "${env:VAULT_HOME}"
+& $nssmPath set $nssmServiceName AppParameters "server -config=$vaultConfigPath"
+
+# Set Vault service display name and description
+& $nssmPath set $nssmServiceName DisplayName "Vault Service"
+& $nssmPath set $nssmServiceName Description "Vault server running as a service"
+
+# Set the Vault service to start manually (initially)
+& $nssmPath set $nssmServiceName Start SERVICE_DEMAND_START
+
+# Configure stdout and stderr logging for Vault service
+& $nssmPath set $nssmServiceName AppStdout "${env:VAULT_HOME}\Logs\vault-stdout.log"
+& $nssmPath set $nssmServiceName AppStderr "${env:VAULT_HOME}\Logs\vault-error.log"
+
+# Optionally, set environment variables for Vault service
+& $nssmPath set $nssmServiceName AppEnvironmentExtra "$env:VAULT_ADDR=https://localhost:8200"
+
+# Confirm Vault service settings
+Write-Host "Confirming Vault service settings..."
+& $nssmPath dump $nssmServiceName | ForEach-Object {$_ -replace '.+nssm\.exe ',''}
+
+# Start the Vault service
+Write-Host "Starting Vault service..."
+Start-Service -Name $nssmServiceName
+
+# Initialize Vault (if it hasn't been initialized already)
 Write-Host "Initializing Vault..."
 $initOutput = vault operator init 2>&1 | Out-String
 
 # Validate initialization output
 if (-Not $initOutput) {
     Write-Host "Error: Failed to initialize Vault."
-    Stop-Process -Id $vaultProcess.Id -Force
+    Stop-Service -Name $nssmServiceName -Force
     Exit
 }
 
@@ -85,7 +118,7 @@ foreach ($line in $initOutput -split "`n") {
 # Validate parsing
 if ($unsealKeys.Count -ne 5 -or -Not $rootToken) {
     Write-Host "Error: Could not extract all unseal keys or the root token from the Vault output."
-    Stop-Process -Id $vaultProcess.Id -Force
+    Stop-Service -Name $nssmServiceName -Force
     Exit
 }
 
@@ -136,6 +169,7 @@ Write-Host "Vault Token, VAULT_ADDR, and Unseal Keys set as system environment v
 
 # Enable Vault secrets engine (if Vault is unsealed and token is set correctly)
 vault secrets enable -path=secret kv
+
 
 
 
