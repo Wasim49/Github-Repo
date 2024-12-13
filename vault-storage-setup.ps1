@@ -1,7 +1,7 @@
 # Define the path for the Vault configuration file
 $vaultConfigPath = "C:\Program Files\Vault\vault-config.hcl"
 
-# Ensure the directory exists
+# Ensure the directory exists for the configuration file
 if (-Not (Test-Path -Path (Split-Path -Path $vaultConfigPath))) {
     Write-Host "Creating directory for Vault configuration file..."
     New-Item -ItemType Directory -Path (Split-Path -Path $vaultConfigPath) -Force
@@ -44,7 +44,7 @@ if ($existingVaultProcess) {
     Write-Host "Vault process stopped."
 }
 
-# Start Vault in server mode using the Chocolatey-installed binary
+# Define the Vault executable path (if installed via Chocolatey)
 $vaultBinaryPath = "C:\ProgramData\chocolatey\bin\vault.exe"
 if (-Not (Test-Path -Path $vaultBinaryPath)) {
     Write-Host "Error: Vault executable not found at $vaultBinaryPath. Ensure Vault is installed via Chocolatey."
@@ -101,6 +101,26 @@ $envVars | ConvertTo-Json -Depth 2 | Set-Content "C:\Users\$env:USERNAME\Downloa
 
 Write-Host "Vault initialized successfully and running in background. Unseal keys and root token saved to C:\Users\$env:USERNAME\Downloads\vault_config.json."
 
+# Create Vault service setup
+Write-Host "Setting up Vault as a Windows service..."
+
+$serviceName = "Vault"
+$serviceArgs = "server", "-config=$vaultConfigPath"  # Define Vault server mode with config
+
+# Create the Vault service if it doesn't already exist
+if (-Not (Get-Service -Name $serviceName -ErrorAction SilentlyContinue)) {
+    Write-Host "Creating Vault service..."
+    New-Service -Name $serviceName -Binary $vaultBinaryPath -ArgumentList $serviceArgs -StartupType Automatic
+    Write-Host "Vault service has been created and set to start automatically."
+} else {
+    Write-Host "Vault service already exists."
+}
+
+# Start the Vault service
+Write-Host "Starting Vault service..."
+Start-Service -Name Vault
+Write-Host "Vault service started."
+
 # Provide feedback to the user
 Write-Host "Vault is ready. You can find the initialization details at C:\Users\$env:USERNAME\Downloads\vault_config.json."
 
@@ -136,6 +156,7 @@ Write-Host "Vault Token, VAULT_ADDR, and Unseal Keys set as system environment v
 
 # Enable Vault secrets engine (if Vault is unsealed and token is set correctly)
 vault secrets enable -path=secret kv
+
 
 
 
