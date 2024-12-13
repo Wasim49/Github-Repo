@@ -53,20 +53,22 @@ $initResult = Invoke-Expression $initCommand
 Write-Host "Vault initialized successfully. Saving unseal keys and root token..."
 $initResult | Out-File -FilePath "C:\Users\vmadmin\Downloads\vault_config.json" -Force
 
+# Extract unseal keys from the initialization result
+$unsealKeys = ($initResult | Select-String -Pattern "Unseal Key" | ForEach-Object { $_.Line.Split(":")[1].Trim() })
+
+# Validate unseal keys
+if ($unsealKeys -eq $null -or $unsealKeys.Count -eq 0) {
+    Write-Host "Error: Unseal keys were not retrieved successfully. Please check the initialization output."
+    exit 1
+}
+
 # Unseal Vault
 Write-Host "Unsealing Vault..."
-$unsealKeys = ($initResult | Select-String -Pattern "Unseal Key" | ForEach-Object { $_.Line.Split(":")[1].Trim() })
-$unsealCommand = "$vaultBinaryPath operator unseal $($unsealKeys[0])"
-Invoke-Expression $unsealCommand
-Start-Sleep -Seconds 5
-
-$unsealCommand = "$vaultBinaryPath operator unseal $($unsealKeys[1])"
-Invoke-Expression $unsealCommand
-Start-Sleep -Seconds 5
-
-$unsealCommand = "$vaultBinaryPath operator unseal $($unsealKeys[2])"
-Invoke-Expression $unsealCommand
-Start-Sleep -Seconds 5
+foreach ($key in $unsealKeys) {
+    $unsealCommand = "$vaultBinaryPath operator unseal $key"
+    $unsealResult = Invoke-Expression $unsealCommand
+    Start-Sleep -Seconds 3
+}
 
 # Enable KV secrets engine
 Write-Host "Enabling KV secrets engine..."
@@ -76,7 +78,7 @@ Invoke-Expression $kvEnableCommand
 # Set Vault environment variables (VAULT_ADDR, VAULT_TOKEN, UNSEAL_KEYS)
 Write-Host "Setting Vault environment variables..."
 [System.Environment]::SetEnvironmentVariable("VAULT_ADDR", "http://127.0.0.1:8200", [System.EnvironmentVariableTarget]::User)
-[System.Environment]::SetEnvironmentVariable("VAULT_TOKEN", $($initResult | Select-String -Pattern "Initial Root Token" | ForEach-Object { $_.Line.Split(":")[1].Trim() }), [System.EnvironmentVariableTarget]::User)
+[System.Environment]::SetEnvironmentVariable("VAULT_TOKEN", ($initResult | Select-String -Pattern "Initial Root Token" | ForEach-Object { $_.Line.Split(":")[1].Trim() }), [System.EnvironmentVariableTarget]::User)
 [System.Environment]::SetEnvironmentVariable("VAULT_UNSEAL_KEYS", ($unsealKeys -join ','), [System.EnvironmentVariableTarget]::User)
 
 # Set up Vault as a Windows service
