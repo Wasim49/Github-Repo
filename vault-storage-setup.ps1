@@ -32,17 +32,17 @@ if (-Not (Test-Path -Path $vaultDataPath)) {
     New-Item -ItemType Directory -Path $vaultDataPath -Force
 }
 
-# Stop any existing Vault process running on port 8200
-Write-Host "Checking if Vault is already running on port 8200..."
-$existingVaultProcess = Get-NetTCPConnection -LocalPort 8200
-if ($existingVaultProcess) {
-    Write-Host "Vault is already running. Stopping the existing Vault process..."
-    # Get the process ID (PID) of the running Vault process
-    $vaultProcessId = $existingVaultProcess.OwningProcess
-    # Stop the Vault process
-    Stop-Process -Id $vaultProcessId -Force
-    Write-Host "Vault process stopped."
-}
+# # Stop any existing Vault process running on port 8200
+# Write-Host "Checking if Vault is already running on port 8200..."
+# $existingVaultProcess = Get-NetTCPConnection -LocalPort 8200
+# if ($existingVaultProcess) {
+#     Write-Host "Vault is already running. Stopping the existing Vault process..."
+#     # Get the process ID (PID) of the running Vault process
+#     $vaultProcessId = $existingVaultProcess.OwningProcess
+#     # Stop the Vault process
+#     Stop-Process -Id $vaultProcessId -Force
+#     Write-Host "Vault process stopped."
+# }
 
 # Start Vault in server mode using the Chocolatey-installed binary
 $vaultBinaryPath = "C:\ProgramData\chocolatey\bin\vault.exe"
@@ -137,14 +137,10 @@ Write-Host "Vault Token, VAULT_ADDR, and Unseal Keys set as system environment v
 # Enable Vault secrets engine (if Vault is unsealed and token is set correctly)
 vault secrets enable -path=secret kv
 
-# Create Vault service using the New-Service cmdlet
-Write-Host "Creating Vault service..."
-New-Service -Name "VaultAgent" -BinaryPathName "C:\ProgramData\chocolatey\bin\vault.exe agent -config=C:\vault\agent-config.hcl" -DisplayName "Vault Agent" -StartupType "Automatic"
 
-Write-Host "Vault service installed and set to start automatically on system boot."
 
-# Optional: Start the Vault service immediately after installation
-Start-Service -Name "VaultAgent"
+
+
 
 
 
