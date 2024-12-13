@@ -137,6 +137,9 @@ Write-Host "Vault Token, VAULT_ADDR, and Unseal Keys set as system environment v
 # Enable Vault secrets engine (if Vault is unsealed and token is set correctly)
 vault secrets enable -path=secret kv
 
+# Final message
+
+Write-Host "Vault is ready. You can keep this master server session open or you can start master session in another powershell session using this command  vault server -config="C:\Program Files\Vault""
 
 
 
