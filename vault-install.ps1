@@ -53,4 +53,3 @@ Write-Host "VAULT_ADDR, VAULT_TOKEN, and UNSEAL_KEY have been saved to C:\Users\
 # Stop the Vault process
 Write-Host "Stopping Vault process..."
 Stop-Process -Id $vaultProcess.Id -Force
-
