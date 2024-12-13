@@ -110,7 +110,7 @@ $serviceArgs = "server", "-config=$vaultConfigPath"  # Define Vault server mode 
 # Create the Vault service if it doesn't already exist
 if (-Not (Get-Service -Name $serviceName -ErrorAction SilentlyContinue)) {
     Write-Host "Creating Vault service..."
-    New-Service -Name $serviceName -Binary $vaultBinaryPath -ArgumentList $serviceArgs -StartupType Automatic
+    New-Service -Name $serviceName -BinaryPathName $vaultBinaryPath -Arguments "$serviceArgs" -StartupType Automatic
     Write-Host "Vault service has been created and set to start automatically."
 } else {
     Write-Host "Vault service already exists."
@@ -156,6 +156,7 @@ Write-Host "Vault Token, VAULT_ADDR, and Unseal Keys set as system environment v
 
 # Enable Vault secrets engine (if Vault is unsealed and token is set correctly)
 vault secrets enable -path=secret kv
+
 
 
 
