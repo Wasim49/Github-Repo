@@ -67,28 +67,6 @@ if (-Not $vaultStatus) {
     Exit 1
 }
 
-# Enable KV secrets engine
-Write-Host "Enabling KV secrets engine..."
-$kvEnableCommand = "$vaultBinaryPath secrets enable -path=secret/ kv"
-Invoke-Expression $kvEnableCommand
-
-# Set up Vault as a Windows service
-$serviceName = "Vault"
-Write-Host "Setting up Vault as a Windows service..."
-New-Service -Name $serviceName -BinaryPathName "$vaultBinaryPath $serviceArgs" -DisplayName "Vault" -Description "HashiCorp Vault" -StartupType Automatic
-
-# Start the Vault service and ensure it starts correctly
-Write-Host "Starting Vault service..."
-Start-Service -Name $serviceName
-Start-Sleep -Seconds 5  # Allow the service to fully start
-
-# Verify if Vault service is running
-$serviceStatus = Get-Service -Name $serviceName
-if ($serviceStatus.Status -ne 'Running') {
-    Write-Host "Error: Vault service did not start. Current status: $($serviceStatus.Status)"
-    Exit 1
-}
-
 # Initialize Vault
 Write-Host "Initializing Vault..."
 $initOutput = vault operator init 2>&1 | Out-String
@@ -127,15 +105,36 @@ $envVars = @{
 }
 $envVars | ConvertTo-Json -Depth 2 | Set-Content "C:\Users\$env:USERNAME\Downloads\vault_config.json"
 
-Write-Host "Vault initialized successfully and running as a service. Unseal keys and root token saved to C:\Users\$env:USERNAME\Downloads\vault_config.json."
+Write-Host "Vault initialized successfully and running as a process. Unseal keys and root token saved to C:\Users\$env:USERNAME\Downloads\vault_config.json."
 
 # Provide feedback to the user
-Write-Host "Vault is ready. You can find the initialization details at C:\Users\$env:USERNAME\Downloads\vault_config.json."
+Write-Host "Vault is initialized. You can find the initialization details at C:\Users\$env:USERNAME\Downloads\vault_config.json."
 
-# Enable Vault secrets engine (if Vault is unsealed and token is set correctly)
-vault secrets enable -path=secret kv
+# Enable KV secrets engine
+Write-Host "Enabling KV secrets engine..."
+$kvEnableCommand = "$vaultBinaryPath secrets enable -path=secret/ kv"
+Invoke-Expression $kvEnableCommand
 
-Write-Host "Script completed successfully. Vault is running as a service and initialization details are stored in C:\Users\$env:USERNAME\Downloads\vault_config.json."
+# Set up Vault as a Windows service
+$serviceName = "Vault"
+Write-Host "Setting up Vault as a Windows service..."
+New-Service -Name $serviceName -BinaryPathName "$vaultBinaryPath $serviceArgs" -DisplayName "Vault" -Description "HashiCorp Vault" -StartupType Automatic
+
+# Start the Vault service and ensure it starts correctly
+Write-Host "Starting Vault service..."
+Start-Service -Name $serviceName
+Start-Sleep -Seconds 5  # Allow the service to fully start
+
+# Verify if Vault service is running
+$serviceStatus = Get-Service -Name $serviceName
+if ($serviceStatus.Status -ne 'Running') {
+    Write-Host "Error: Vault service did not start. Current status: $($serviceStatus.Status)"
+    Exit 1
+}
+
+# Provide final feedback
+Write-Host "Vault is now running as a service, and the KV secrets engine is enabled."
+
 
 
 
