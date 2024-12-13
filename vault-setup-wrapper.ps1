@@ -54,8 +54,13 @@ Write-Host "Executing Vault Storage Setup Script..."
 
 Write-Host "All scripts executed successfully."
 
+Write-Host "Vault is ready. You can keep this master server session open or you can start master session in another powershell session using this command  vault server -config="C:\Program Files\Vault""
+
+Write-Host "Vault binary is at C:\ProgramData\chocolatey\bin\vault.exe. Secrets are persisted in C:\VaultData. Configuration file is at C:\Program Files\Vault. Downloads folder contains everything else"
+
 # Stop the transcript to end capturing the session
 Stop-Transcript
+
 
 
 
