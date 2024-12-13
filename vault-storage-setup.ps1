@@ -60,12 +60,6 @@ Start-Process -FilePath $vaultBinaryPath -ArgumentList $serviceArgs -NoNewWindow
 Write-Host "Waiting for Vault to initialize..."
 Start-Sleep -Seconds 15  # Adjust if needed based on system performance
 
-# Check if Vault is running and accessible
-$vaultStatus = Test-Connection -ComputerName "127.0.0.1" -Port 8200 -Count 1 -Quiet
-if (-Not $vaultStatus) {
-    Write-Host "Vault is not accessible on port 8200. Exiting script."
-    Exit 1
-}
 
 # Initialize Vault
 Write-Host "Initializing Vault..."
@@ -134,8 +128,6 @@ if ($serviceStatus.Status -ne 'Running') {
 
 # Provide final feedback
 Write-Host "Vault is now running as a service, and the KV secrets engine is enabled."
-
-
 
 
 
