@@ -137,17 +137,6 @@ Write-Host "Vault Token, VAULT_ADDR, and Unseal Keys set as system environment v
 # Enable Vault secrets engine (if Vault is unsealed and token is set correctly)
 vault secrets enable -path=secret kv
 
-# Start Vault service (if Vault is installed as a service)
-Write-Host "Starting Vault service..."
-Start-Service -Name "Vault"
-
-Write-Host "Vault service started successfully."
-
-
-
-
-
-
 
 
 
