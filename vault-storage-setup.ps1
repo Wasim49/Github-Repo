@@ -136,18 +136,3 @@ Write-Host "Vault Token, VAULT_ADDR, and Unseal Keys set as system environment v
 
 # Enable Vault secrets engine (if Vault is unsealed and token is set correctly)
 vault secrets enable -path=secret kv
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
