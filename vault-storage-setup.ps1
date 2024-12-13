@@ -6,6 +6,7 @@ $vaultConfigPath = "C:\Program Files\Vault\vault-config.hcl"
 $vaultDataDir = "C:\VaultData"
 $serviceName = "Vault"
 $serviceArgs = "-config=$vaultConfigPath"
+$vaultConfigJsonPath = "C:\Users\vmadmin\Downloads\vault_config.json"
 
 # Create Vault Data Directory
 Write-Host "Creating Vault data directory..."
@@ -49,20 +50,41 @@ Write-Host "Initializing Vault..."
 $initCommand = "$vaultBinaryPath operator init -key-shares=5 -key-threshold=3"
 $initResult = Invoke-Expression $initCommand
 
-# Capture unseal keys and root token (for later use)
+# Check if initialization output contains unseal keys and root token
+if (-Not $initResult) {
+    Write-Host "Vault initialization failed. No output received."
+    exit 1
+}
+
+# Extract unseal keys and root token from the initialization output
 Write-Host "Vault initialized successfully. Saving unseal keys and root token..."
-$initResult | Out-File -FilePath "C:\Users\vmadmin\Downloads\vault_config.json" -Force
+$initResult | Out-File -FilePath $vaultConfigJsonPath -Force
 
-# Extract unseal keys from the initialization result
 $unsealKeys = ($initResult | Select-String -Pattern "Unseal Key" | ForEach-Object { $_.Line.Split(":")[1].Trim() })
+$rootToken = ($initResult | Select-String -Pattern "Initial Root Token" | ForEach-Object { $_.Line.Split(":")[1].Trim() })
 
-# Validate unseal keys
+# Validate unseal keys and root token
 if ($unsealKeys -eq $null -or $unsealKeys.Count -eq 0) {
     Write-Host "Error: Unseal keys were not retrieved successfully. Please check the initialization output."
     exit 1
 }
 
-# Unseal Vault
+if ($rootToken -eq $null) {
+    Write-Host "Error: Root token was not retrieved successfully. Please check the initialization output."
+    exit 1
+}
+
+# Save unseal keys and root token to JSON file
+Write-Host "Saving unseal keys and root token to $vaultConfigJsonPath..."
+$vaultConfig = @{
+    VAULT_ADDR  = "http://127.0.0.1:8200"
+    VAULT_TOKEN = $rootToken
+    UNSEAL_KEYS = $unsealKeys
+}
+
+$vaultConfig | ConvertTo-Json -Depth 2 | Set-Content -Path $vaultConfigJsonPath
+
+# Unseal Vault using the unseal keys
 Write-Host "Unsealing Vault..."
 foreach ($key in $unsealKeys) {
     $unsealCommand = "$vaultBinaryPath operator unseal $key"
@@ -78,7 +100,7 @@ Invoke-Expression $kvEnableCommand
 # Set Vault environment variables (VAULT_ADDR, VAULT_TOKEN, UNSEAL_KEYS)
 Write-Host "Setting Vault environment variables..."
 [System.Environment]::SetEnvironmentVariable("VAULT_ADDR", "http://127.0.0.1:8200", [System.EnvironmentVariableTarget]::User)
-[System.Environment]::SetEnvironmentVariable("VAULT_TOKEN", ($initResult | Select-String -Pattern "Initial Root Token" | ForEach-Object { $_.Line.Split(":")[1].Trim() }), [System.EnvironmentVariableTarget]::User)
+[System.Environment]::SetEnvironmentVariable("VAULT_TOKEN", $rootToken, [System.EnvironmentVariableTarget]::User)
 [System.Environment]::SetEnvironmentVariable("VAULT_UNSEAL_KEYS", ($unsealKeys -join ','), [System.EnvironmentVariableTarget]::User)
 
 # Set up Vault as a Windows service
@@ -94,11 +116,12 @@ $serviceStatus = Get-Service -Name $serviceName
 Write-Host "Vault service status: $($serviceStatus.Status)"
 
 # Final output
-Write-Host "Vault is ready. You can find the initialization details at C:\Users\vmadmin\Downloads\vault_config.json."
+Write-Host "Vault is ready. You can find the initialization details at $vaultConfigJsonPath."
 Write-Host "Vault token, unseal keys, and VAULT_ADDR environment variables have been set."
 
 # End of script
 Write-Host "Script completed successfully."
+
 
 
 
