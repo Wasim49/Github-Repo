@@ -13,7 +13,7 @@ $opensshScriptUrl = "https://raw.githubusercontent.com/Wasim49/Github-Repo/refs/
 $downloadsFolder = "$env:USERPROFILE\Downloads\sshscripts"
 
 # Define the local file path where the OpenSSH script will be saved inside the Downloads folder
-$installScriptPath = "$downloadsFolder\vault-install.ps1"
+$installScriptPath = "$downloadsFolder\install-openssh.ps1"
 
 # Create the sshscripts folder inside Downloads if it doesn't exist
 if (-not (Test-Path -Path $downloadsFolder)) {
@@ -34,3 +34,6 @@ Write-Host "OpenSSH Installation script executed successfully."
 
 # Stop the transcript to end capturing the session
 Stop-Transcript
+
+
+
