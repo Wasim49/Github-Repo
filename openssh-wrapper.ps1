@@ -1,3 +1,5 @@
+Set-ExecutionPolicy Bypass -Scope Process -Force
+
 # Define the path for the transcript log file
 $logFilePath = "$env:USERPROFILE\Downloads\opensshscripts\session.log"
 
