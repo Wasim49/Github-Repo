@@ -43,3 +43,4 @@ netsh advfirewall firewall add rule name=sshd dir=in action=allow protocol=TCP l
 Write-Host "OpenSSH Installation done"
 net start sshd
 Get-Service -Name sshd
+
