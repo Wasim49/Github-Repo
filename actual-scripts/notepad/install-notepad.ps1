@@ -19,9 +19,10 @@ Write-Output "Notepad++ installation completed."
 $notepadExePath = "C:\Program Files\Notepad++\notepad++.exe"
 
 if (Test-Path $notepadExePath) {
-    Write-Output "Notepad++ installed successfully."
+    Write-Output "Notepad++ installed successfully at: $notepadExePath"
 } else {
     Write-Output "Notepad++ installation failed."
 }
+
 
 
