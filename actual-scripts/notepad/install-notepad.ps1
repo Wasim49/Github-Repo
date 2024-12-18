@@ -1,5 +1,5 @@
 # Define the URL for the latest Notepad++ installer
-$installerUrl = "https://github.com/notepad-plus-plus/notepad-plus-plus/releases/latest/download/npp.8.5.9.Installer.x64.exe"
+$installerUrl = "https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.7.4/npp.8.7.4.Installer.x64.exe"
 $installerPath = "$env:TEMP\nppInstaller-x64.exe"
 
 # Download the installer
