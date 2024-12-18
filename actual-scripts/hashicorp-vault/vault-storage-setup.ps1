@@ -99,14 +99,10 @@ $envVars = @{
 }
 $envVars | ConvertTo-Json -Depth 2 | Set-Content "c:\scripts\vault_config.json"
 
-Write-Host "Vault initialized successfully and running in background. Unseal keys and root token saved to c:\scripts\vault_config.json."
+Write-Host "Vault initialized successfully and running in background. Unseal keys and root token saved to c:\scripts\vault_config.json. You can keep this master server session open or you can start master session in another powershell session using this command, vault server -config=""C:\Program Files\Vault"""
 
 # Provide feedback to the user
-Write-Host "Vault is ready. You can find the initialization details at c:\scripts\vault_config.json."
-
-
-
-
+Write-Host "Vault binary is at C:\ProgramData\chocolatey\bin\vault.exe. Secrets are persisted in C:\VaultData. Configuration file is at c:\scripts\vault_config.json. c:\scripts contains everything else"
 
 
 
