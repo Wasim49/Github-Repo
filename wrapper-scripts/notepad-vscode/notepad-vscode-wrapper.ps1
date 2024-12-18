@@ -13,6 +13,9 @@ $vscodeurl = "https://raw.githubusercontent.com/Wasim49/Github-Repo/refs/heads/m
 # Define the local folder path where the scripts will be saved (C:\scripts)
 $scriptsfolder = "C:\scripts"
 
+# Define the local folder path for installers (C:\scripts\installers)
+$installersfolder = "C:\scripts\installers"
+
 # Define the local file paths where the scripts will be saved
 $notepadpath = "$scriptsfolder\install-notepad.ps1"
 $vscodepath = "$scriptsfolder\install-vscode.ps1"
@@ -21,6 +24,12 @@ $vscodepath = "$scriptsfolder\install-vscode.ps1"
 if (-not (Test-Path -Path $scriptsfolder)) {
     New-Item -Path $scriptsfolder -ItemType Directory
     Write-Host "Created scripts folder."
+}
+
+# Create the installers folder if it doesn't exist
+if (-not (Test-Path -Path $installersfolder)) {
+    New-Item -Path $installersfolder -ItemType Directory
+    Write-Host "Created installers folder."
 }
 
 # Download the Notepad++ installation script
@@ -43,8 +52,6 @@ Write-Host "Executing VS Code installation script..."
 
 Write-Host "All scripts executed successfully."
 
-Write-Host "Notepad++ is installed"
-Write-Host "VS Code is installed"
-
 # Stop the transcript to end capturing the session
 Stop-Transcript
+

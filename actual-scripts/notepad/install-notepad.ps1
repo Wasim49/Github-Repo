@@ -1,29 +1,27 @@
-## NOTES ABOUT THIS SCRIPT
-## The url points to github link that has the exe, this link will always be available
-## This script will always work
-
-
-
 # Define the URL for the latest Notepad++ installer
-$installerUrl = "https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.7.4/npp.8.7.4.Installer.x64.exe" ## This github link that downloads exe
-$installerPath = "$env:TEMP\npp.8.7.4.Installer.x64.exe"     
+$installerurl = "https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.7.4/npp.8.7.4.Installer.x64.exe"
+$installersfolder = "C:\scripts\installers"           # Folder where installer will be saved
+$installerpath = "$installersfolder\npp.8.7.4.Installer.x64.exe"
 
 # Download the installer
 Write-Output "Downloading Notepad++ installer..."
-Invoke-WebRequest -Uri $installerUrl -OutFile $installerPath -UseBasicParsing
+Invoke-WebRequest -Uri $installerurl -OutFile $installerpath -UseBasicParsing
 
-# Run the installer silently, preventing Notepad++ from launching after installation
+# Run the installer silently
 Write-Output "Installing Notepad++ silently..."
-Start-Process -FilePath $installerPath -ArgumentList "/S" -NoNewWindow -Wait
+Start-Process -FilePath $installerpath -ArgumentList "/S" -NoNewWindow -Wait
 
-# Confirm installation
-if (Test-Path "C:\Program Files\Notepad++\notepad++.exe") {
+# Clean up the installer
+Remove-Item -Path $installerpath -Force
+Write-Output "Notepad++ installation completed."
+
+# Check if Notepad++ has been successfully installed
+$notepadExePath = "C:\Program Files\Notepad++\notepad++.exe"
+
+if (Test-Path $notepadExePath) {
     Write-Output "Notepad++ installed successfully."
 } else {
     Write-Output "Notepad++ installation failed."
 }
 
-# Clean up the installer
-Remove-Item -Path $installerPath -Force
-Write-Output "Notepad++ installed successfully."
 
