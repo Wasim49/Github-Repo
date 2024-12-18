@@ -10,13 +10,14 @@ Invoke-WebRequest -Uri $installerUrl -OutFile $installerPath -UseBasicParsing
 Write-Output "Installing Notepad++ silently..."
 Start-Process -FilePath $installerPath -ArgumentList "/S" -NoNewWindow -Wait
 
-# Clean up the installer
-Remove-Item -Path $installerPath -Force
-Write-Output "Notepad++ installed successfully."
-
 # Confirm installation
 if (Test-Path "C:\Program Files\Notepad++\notepad++.exe") {
     Write-Output "Notepad++ installed successfully."
 } else {
     Write-Output "Notepad++ installation failed."
 }
+
+# Clean up the installer
+Remove-Item -Path $installerPath -Force
+Write-Output "Notepad++ installed successfully."
+
