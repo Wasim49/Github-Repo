@@ -11,10 +11,6 @@ Invoke-WebRequest -Uri $installerurl -OutFile $installerpath -UseBasicParsing
 Write-Output "Installing VS Code silently..."
 Start-Process -FilePath $installerpath -ArgumentList "/verysilent /norestart /mergetasks=!runcode" -NoNewWindow -Wait
 
-# Clean up the installer
-Remove-Item -Path $installerpath -Force
-Write-Output "VS Code installation completed."
-
 # Check if VS Code has been successfully installed
 $vscodeExePath = "$env:LOCALAPPDATA\Programs\Microsoft VS Code\Code.exe"
 
@@ -23,4 +19,8 @@ if (Test-Path $vscodeExePath) {
 } else {
     Write-Output "VS Code installation failed."
 }
+
+# # Clean up the installer
+# Remove-Item -Path $installerpath -Force
+# Write-Output "VS Code installation completed."
 
