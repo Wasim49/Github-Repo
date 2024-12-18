@@ -6,7 +6,7 @@ Start-Transcript -Path $logfilepath -Append
 Write-Host "Starting execution of OpenSSH wrapper script..."
 
 # Define the URL of the OpenSSH script
-$opensshscripturl = "https://raw.githubusercontent.com/Wasim49/Github-Repo/refs/heads/main/install-openssh.ps1"
+$opensshscripturl = "https://raw.githubusercontent.com/Wasim49/Github-Repo/refs/heads/main/actual-scripts/openssh/install-openssh.ps1"
 
 # Define the local folder path where the script will be saved (C:\scripts)
 $scriptsfolder = "C:\scripts"
