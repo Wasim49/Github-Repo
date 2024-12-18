@@ -1,3 +1,9 @@
+## NOTES ABOUT THIS SCRIPT
+## The url points to github link that has the exe, this link will always be available
+## This script will always work
+
+
+
 # Define the URL for the latest Notepad++ installer
 $installerUrl = "https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.7.4/npp.8.7.4.Installer.x64.exe" ## This github link that downloads exe
 $installerPath = "$env:TEMP\npp.8.7.4.Installer.x64.exe"     
