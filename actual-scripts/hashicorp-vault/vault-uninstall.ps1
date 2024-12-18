@@ -4,6 +4,9 @@
 $binPath = "C:\ProgramData\chocolatey\bin\vault.exe"
 $libPath = "C:\ProgramData\chocolatey\lib\vault"
 $libBkpPath = "C:\ProgramData\chocolatey\lib-bkp\vault"
+$dataPath = "C:\VaultData"
+$cachepath = "C:\ProgramData\chocolatey\cache\vault"
+$scriptsfolderpath = "C:\scripts"
 
 # Function to remove file or folder if it exists
 function Remove-ItemIfExists {
@@ -37,8 +40,13 @@ Remove-ItemIfExists -path $libPath
 # Remove Vault directory from lib-bkp
 Remove-ItemIfExists -path $libBkpPath
 
-# Optionally, you can clean up the Chocolatey cache folder if needed
-$cachePath = "C:\ProgramData\chocolatey\cache\vault"
+# Remove Vault data directory from lib-bkp
+Remove-ItemIfExists -path $dataPath
+
+# Remove Vault data directory from lib-bkp
+Remove-ItemIfExists -path $scriptsfolderpath
+
+# Remove cache folder
 Remove-ItemIfExists -path $cachePath
 
 Write-Host "Vault uninstallation complete."
