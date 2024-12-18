@@ -1,5 +1,5 @@
 # Define the path for the transcript log file
-$logFilePath = "$env:USERPROFILE\Downloads\scripts\session.log"
+$logFilePath = "C:\scripts\session.log"
 
 # Start the transcript to capture everything in the PowerShell session
 Start-Transcript -Path $logFilePath -Append
@@ -7,48 +7,44 @@ Start-Transcript -Path $logFilePath -Append
 Write-Host "Starting execution of wrapper script..."
 
 # Define the URLs of the scripts
-$notepadurl= "https://raw.githubusercontent.com/Wasim49/Github-Repo/refs/heads/main/actual-scripts/notepad/install-notepad.ps1"
+$notepadurl = "https://raw.githubusercontent.com/Wasim49/Github-Repo/refs/heads/main/actual-scripts/notepad/install-notepad.ps1"
 $vscodeurl = "https://raw.githubusercontent.com/Wasim49/Github-Repo/refs/heads/main/actual-scripts/vscode/install-vscode.ps1"
 
+# Define the local folder path where the scripts will be saved (C:\scripts)
+$scriptsfolder = "C:\scripts"
 
-# Define the local folder path where the scripts will be saved (vaultscripts folder inside Downloads)
-$downloadsFolder = "$env:USERPROFILE\Downloads\scripts"
+# Define the local file paths where the scripts will be saved
+$notepadpath = "$scriptsfolder\install-notepad.ps1"
+$vscodepath = "$scriptsfolder\install-vscode.ps1"
 
-# Define the local file paths where the scripts will be saved inside the vaultscripts folder
-$notepadpath = "$downloadsFolder\install-notepad.ps1"
-$vscodepath = "$downloadsFolder\install-vscode.ps1"
-
-# Create the scripts folder inside Downloads if it doesn't exist
-if (-not (Test-Path -Path $downloadsFolder)) {
-    New-Item -Path $downloadsFolder -ItemType Directory
+# Create the scripts folder if it doesn't exist
+if (-not (Test-Path -Path $scriptsfolder)) {
+    New-Item -Path $scriptsfolder -ItemType Directory
     Write-Host "Created scripts folder."
 }
 
-# Download the notepad installation script
-Write-Host "Downloading notepad Installation Script..."
+# Download the Notepad++ installation script
+Write-Host "Downloading Notepad++ installation script..."
 Invoke-WebRequest -Uri $notepadurl -OutFile $notepadpath
-Write-Host "Vault Installation Script downloaded to $notepadpath."
+Write-Host "Notepad++ installation script downloaded to $notepadpath."
 
-# Download the vscode installation script
-Write-Host "Downloading Vault Manual Check Script..."
+# Download the VS Code installation script
+Write-Host "Downloading VS Code installation script..."
 Invoke-WebRequest -Uri $vscodeurl -OutFile $vscodepath
-Write-Host "Vault Manual Check Script downloaded to $vscodepath."
+Write-Host "VS Code installation script downloaded to $vscodepath."
 
-
-# Execute the Vault installation script
-Write-Host "Executing Vault Installation Script..."
+# Execute the Notepad++ installation script
+Write-Host "Executing Notepad++ installation script..."
 . $notepadpath
 
-# Execute the Vault manual check script
-Write-Host "Executing Vault Manual Check Script..."
+# Execute the VS Code installation script
+Write-Host "Executing VS Code installation script..."
 . $vscodepath
-
 
 Write-Host "All scripts executed successfully."
 
-Write-Host "Notepad is installed"
-
-Write-Host "Vscode is installed"
+Write-Host "Notepad++ is installed"
+Write-Host "VS Code is installed"
 
 # Stop the transcript to end capturing the session
 Stop-Transcript
