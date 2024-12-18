@@ -19,7 +19,8 @@ Write-Output "VS Code installation completed."
 $vscodeExePath = "$env:LOCALAPPDATA\Programs\Microsoft VS Code\Code.exe"
 
 if (Test-Path $vscodeExePath) {
-    Write-Output "VS Code installed successfully."
+    Write-Output "VS Code installed successfully at: $vscodeExePath"
 } else {
     Write-Output "VS Code installation failed."
 }
+
