@@ -1,39 +1,39 @@
-
-$logFilePath = "$env:USERPROFILE\Downloads\sshscripts\session.log"  # Log file in the Downloads folder
+$logfilepath = "C:\scripts\session.log"  # Log file inside C:\scripts folder
 
 # Start the transcript to capture everything in the PowerShell session
-Start-Transcript -Path $logFilePath -Append
+Start-Transcript -Path $logfilepath -Append
 
 Write-Host "Starting execution of OpenSSH wrapper script..."
 
 # Define the URL of the OpenSSH script
-$opensshScriptUrl = "https://raw.githubusercontent.com/Wasim49/Github-Repo/refs/heads/main/install-openssh.ps1"
+$opensshscripturl = "https://raw.githubusercontent.com/Wasim49/Github-Repo/refs/heads/main/install-openssh.ps1"
 
-# Define the local folder path where the scripts will be saved (vaultscripts folder inside Downloads)
-$downloadsFolder = "$env:USERPROFILE\Downloads\sshscripts"
+# Define the local folder path where the script will be saved (C:\scripts)
+$scriptsfolder = "C:\scripts"
 
-# Define the local file path where the OpenSSH script will be saved inside the Downloads folder
-$installScriptPath = "$downloadsFolder\install-openssh.ps1"
+# Define the local file path where the OpenSSH script will be saved inside C:\scripts
+$installscriptpath = "$scriptsfolder\install-openssh.ps1"
 
-# Create the sshscripts folder inside Downloads if it doesn't exist
-if (-not (Test-Path -Path $downloadsFolder)) {
-    New-Item -Path $downloadsFolder -ItemType Directory
-    Write-Host "Created sshscripts folder at $downloadsFolder."
+# Create the C:\scripts folder if it doesn't exist
+if (-not (Test-Path -Path $scriptsfolder)) {
+    New-Item -Path $scriptsfolder -ItemType Directory
+    Write-Host "Created scripts folder at $scriptsfolder."
 }
 
 # Download the OpenSSH installation script
 Write-Host "Downloading OpenSSH Installation Script..."
-Invoke-WebRequest -Uri $opensshScriptUrl -OutFile $installScriptPath
-Write-Host "OpenSSH Installation Script downloaded to $installScriptPath."
+Invoke-WebRequest -Uri $opensshscripturl -OutFile $installscriptpath
+Write-Host "OpenSSH Installation Script downloaded to $installscriptpath."
 
 # Execute the OpenSSH installation script
 Write-Host "Executing OpenSSH Installation Script..."
-. $installScriptPath
+. $installscriptpath
 
 Write-Host "OpenSSH Installation script executed successfully."
 
 # Stop the transcript to end capturing the session
 Stop-Transcript
+
 
 
 
