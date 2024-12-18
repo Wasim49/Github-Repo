@@ -102,20 +102,9 @@ $envVars | ConvertTo-Json -Depth 2 | Set-Content "c:\scripts\vault_config.json"
 Write-Host "Vault configuration is complete. Vault binary is at C:\ProgramData\chocolatey\bin\vault.exe. Secrets are persisted in C:\VaultData. Token & unseal credentials are stored at c:\scripts\vault_config.json. c:\scripts contains everything else"
 
 # Provide feedback to the user
-Write-Host "After restart if you want to run vault again. Open two powershell sessions. In first run this command, vault server -config=""C:\scripts\vault-config.hcl"". In second run the below script"
+Write-Host "After restart if you want to run vault again. Open two powershell sessions. In first run this command, vault server -config=""C:\scripts\vault-config.hcl"". In second powershell session run vault unseal script thats in c:\scripts"
 
-Write-Host "# Read the Vault credentials from the JSON file created by the first script
-$envVars = Get-Content -Path "c:\scripts\vault_config.json" | ConvertFrom-Json
 
-# Set the environment variables for VAULT_ADDR and VAULT_TOKEN
-$env:VAULT_ADDR = $envVars.VAULT_ADDR
-$env:VAULT_TOKEN = $envVars.VAULT_TOKEN
-
-# Now you can access the Vault address and unseal keys
-$vaultAddr = $envVars.VAULT_ADDR
-$unsealKeys = $envVars.UNSEAL_KEYS"
-
-Write-Host "Vault initialized successfully and running in background. Unseal keys and root token saved to c:\scripts\vault_config.json. You can keep this master server session open or you can start master session in another powershell session using this command, vault server -config=""C:\Program Files\Vault"""
 
 
 
