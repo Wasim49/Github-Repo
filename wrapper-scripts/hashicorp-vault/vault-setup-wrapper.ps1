@@ -10,7 +10,7 @@ Write-Host "Starting execution of wrapper script..."
 $installScriptUrl = "https://raw.githubusercontent.com/Wasim49/Github-Repo/refs/heads/main/actual-scripts/hashicorp-vault/vault-install.ps1"
 $checkScriptUrl = "https://raw.githubusercontent.com/Wasim49/Github-Repo/refs/heads/main/actual-scripts/hashicorp-vault/vault-manual-check.ps1"
 $storageScriptUrl = "https://raw.githubusercontent.com/Wasim49/Github-Repo/refs/heads/main/actual-scripts/hashicorp-vault/vault-storage-setup.ps1"
-$vaulunsealscripturi = ""
+$vaulunsealscripturi = "https://raw.githubusercontent.com/Wasim49/Github-Repo/refs/heads/main/actual-scripts/hashicorp-vault/vault-unseal.ps1"
 
 # Define the local folder path where the scripts will be saved
 $scriptsFolder = "c:\scripts"
