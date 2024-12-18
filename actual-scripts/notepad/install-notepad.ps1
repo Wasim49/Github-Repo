@@ -25,4 +25,9 @@ if (Test-Path $notepadExePath) {
 }
 
 
+# # Clean up the installer
+# Remove-Item -Path $installerpath -Force
+# Write-Output "Notepad++ installation completed."
+
+
 
