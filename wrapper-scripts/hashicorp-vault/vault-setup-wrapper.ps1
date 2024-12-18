@@ -10,6 +10,7 @@ Write-Host "Starting execution of wrapper script..."
 $installScriptUrl = "https://raw.githubusercontent.com/Wasim49/Github-Repo/refs/heads/main/actual-scripts/hashicorp-vault/vault-install.ps1"
 $checkScriptUrl = "https://raw.githubusercontent.com/Wasim49/Github-Repo/refs/heads/main/actual-scripts/hashicorp-vault/vault-manual-check.ps1"
 $storageScriptUrl = "https://raw.githubusercontent.com/Wasim49/Github-Repo/refs/heads/main/actual-scripts/hashicorp-vault/vault-storage-setup.ps1"
+$vaulunsealscripturi = ""
 
 # Define the local folder path where the scripts will be saved
 $scriptsFolder = "c:\scripts"
@@ -18,6 +19,7 @@ $scriptsFolder = "c:\scripts"
 $installScriptPath = "$scriptsFolder\vault-install.ps1"
 $checkScriptPath = "$scriptsFolder\vault-manual-check.ps1"
 $storageScriptPath = "$scriptsFolder\vault-storage-setup.ps1"
+$vaultunsealpath = "$scriptsFolder\vault-unseal.ps1"
 
 # Create the scripts folder if it doesn't exist
 if (-not (Test-Path -Path $scriptsFolder)) {
@@ -39,6 +41,12 @@ Write-Host "Vault Manual Check Script downloaded to $checkScriptPath."
 Write-Host "Downloading Vault Storage Setup Script..."
 Invoke-WebRequest -Uri $storageScriptUrl -OutFile $storageScriptPath
 Write-Host "Vault Storage Setup Script downloaded to $storageScriptPath."
+
+# Download the Vault unseal script
+Write-Host "Downloading Vault unseal Script..."
+Invoke-WebRequest -Uri $vaulunsealscripturi -OutFile $vaultunsealpath
+Write-Host "Vault unseal Script downloaded to $storageScriptPath."
+
 
 # Execute the Vault installation script
 Write-Host "Executing Vault Installation Script..."
