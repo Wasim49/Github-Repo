@@ -1,8 +1,8 @@
 # Define the path for the transcript log file
-$logFilePath = "C:\scripts\session.log"
+$logfilepath = "C:\scripts\session.log"
 
 # Start the transcript to capture everything in the PowerShell session
-Start-Transcript -Path $logFilePath -Append
+Start-Transcript -Path $logfilepath -Append
 
 Write-Host "Starting execution of wrapper script..."
 
