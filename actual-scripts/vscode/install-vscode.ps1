@@ -1,6 +1,6 @@
 # Define the URL for the latest VS Code installer
-$installerUrl = "https://code.visualstudio.com/docs/?dv=win64user"
-$installerPath = "$env:TEMP\VSCodeUserSetup-x64-1.96.0"
+$installerUrl = "https://update.code.visualstudio.com/latest/win32-x64-user/stable" ## This link autoatically downlaods the latest vscode exe file
+$installerPath = "$env:TEMP\VSCodeUserSetup-x64-1.96.0.exe"                          ## you have to manually change this
 
 # Download the installer
 Write-Output "Downloading VS Code installer..."
