@@ -1,5 +1,5 @@
 # Read the Vault credentials from the JSON file created by the first script
-$envVars = Get-Content -Path "$env:USERPROFILE\Downloads\vault_config.json" | ConvertFrom-Json
+$envVars = Get-Content -Path "c:\scripts\vault_config.json" | ConvertFrom-Json
 
 # Set the environment variables for VAULT_ADDR and VAULT_TOKEN
 $env:VAULT_ADDR = $envVars.VAULT_ADDR
@@ -37,6 +37,7 @@ Write-Host "Adding a sample secret..."
 vault kv put secret/my_secret vmpassword=izjKJ!TTVbE4
 
 Write-Host "Secret successfully created."
+
 
 
 

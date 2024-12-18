@@ -6,7 +6,7 @@ choco install vault -y
 
 # Start Vault in dev mode and capture its output
 Write-Host "Starting Vault in dev mode and capturing output..."
-$vaultLogPath = "C:\Users\$env:USERNAME\Downloads\vault_output.txt"
+$vaultLogPath = "c:\scripts\vault_output.txt"
 $vaultProcess = Start-Process "vault" -ArgumentList "server", "-dev" -WindowStyle Hidden -PassThru -RedirectStandardOutput $vaultLogPath
 
 # Wait for Vault to initialize
@@ -45,11 +45,12 @@ $envVars = @{
     VAULT_TOKEN = $vaultToken
     UNSEAL_KEY  = $unsealKey
 }
-$envVars | ConvertTo-Json -Depth 2 | Set-Content "C:\Users\$env:USERNAME\Downloads\vault_config.json"
+$envVars | ConvertTo-Json -Depth 2 | Set-Content "c:\scripts\vault_config.json"
 
 Write-Host "Vault installation complete."
-Write-Host "VAULT_ADDR, VAULT_TOKEN, and UNSEAL_KEY have been saved to C:\Users\$env:USERNAME\Downloads\vault_config.json"
+Write-Host "VAULT_ADDR, VAULT_TOKEN, and UNSEAL_KEY have been saved to c:\scripts\vault_config.json"
 
 # Stop the Vault process
 Write-Host "Stopping Vault process..."
 Stop-Process -Id $vaultProcess.Id -Force
+
