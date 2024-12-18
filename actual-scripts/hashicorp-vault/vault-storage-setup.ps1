@@ -102,7 +102,7 @@ $envVars | ConvertTo-Json -Depth 2 | Set-Content "c:\scripts\vault_config.json"
 Write-Host "Vault configuration is complete. Vault binary is at C:\ProgramData\chocolatey\bin\vault.exe. Secrets are persisted in C:\VaultData. Token & unseal credentials are stored at c:\scripts\vault_config.json. c:\scripts contains everything else"
 
 # Provide feedback to the user
-Write-Host "After restart if you want to run vault again. Open two powershell sessions. In first run this command, vault server -config=""C:\scripts\vault-config.hcl"". In second powershell session run vault unseal script thats in c:\scripts"
+Write-Host "After restart if you want to run vault again. Open two powershell sessions. In first run this command, vault server -config=""C:\scripts\vault-config.hcl"". In second powershell session run vault unseal script thats in c:\scripts, then do vault status in the second powershell session"
 
 
 
