@@ -7,8 +7,8 @@ Start-Transcript -Path $logFilePath -Append
 Write-Host "Starting execution of wrapper script..."
 
 # Define the URLs of the scripts
-$notepadurl= "https://raw.githubusercontent.com/Wasim49/Github-Repo/refs/heads/main/actual-scripts/notepad/install.notepad.ps1"
-$vscodeurl = "https://raw.githubusercontent.com/Wasim49/Github-Repo/refs/heads/main/vault-manual-check.ps1"
+$notepadurl= "https://raw.githubusercontent.com/Wasim49/Github-Repo/refs/heads/main/actual-scripts/notepad/install-notepad.ps1"
+$vscodeurl = "https://raw.githubusercontent.com/Wasim49/Github-Repo/refs/heads/main/actual-scripts/vscode/install-vscode.ps1"
 
 
 # Define the local folder path where the scripts will be saved (vaultscripts folder inside Downloads)
@@ -18,10 +18,10 @@ $downloadsFolder = "$env:USERPROFILE\Downloads\scripts"
 $notepadpath = "$downloadsFolder\install-notepad.ps1"
 $vscodepath = "$downloadsFolder\install-vscode.ps1"
 
-# Create the vaultscripts folder inside Downloads if it doesn't exist
+# Create the scripts folder inside Downloads if it doesn't exist
 if (-not (Test-Path -Path $downloadsFolder)) {
     New-Item -Path $downloadsFolder -ItemType Directory
-    Write-Host "Created vaultscripts folder."
+    Write-Host "Created scripts folder."
 }
 
 # Download the notepad installation script
