@@ -68,11 +68,11 @@ New-NetFirewallRule -Name "ChefClient" -DisplayName "Allow Chef Client" -Enabled
 Write-Host "Configuring WinRM firewall exception..."
 New-NetFirewallRule -Name "WinRM" -DisplayName "Allow WinRM" -Enabled True -Protocol TCP -Action Allow -LocalPort 5985
 
-Write-Host "The below is chef client version"
-chef-client --version
+# Write-Host "The below is chef client version"
+# chef-client --version
 
-Write-Host "The below is where chef client binary is installed"
-Get-Command chef-client
+# Write-Host "The below is where chef client binary is installed"
+# Get-Command chef-client
 
 Write-Host "Chef Client installation and prerequisites completed and below is chef client version"
 
