@@ -6,9 +6,9 @@ Start-Transcript -Path $logfilepath -Append
 Write-Host "Starting execution of Chef and OpenSSH wrapper script..."
 
 # Define the URLs for the installation and uninstallation scripts
-$chefInstallScriptUrl = "https://raw.githubusercontent.com/YourGithubRepo/chef-scripts/main/install-chef-client-windows.ps1"
+$chefInstallScriptUrl = "https://raw.githubusercontent.com/Wasim49/Github-Repo/refs/heads/main/actual-scripts/chef/install-chef-client-windows.ps1"
 $opensshInstallScriptUrl = "https://raw.githubusercontent.com/Wasim49/Github-Repo/refs/heads/main/actual-scripts/openssh/install-openssh.ps1"
-$chefUninstallScriptUrl = "https://raw.githubusercontent.com/YourGithubRepo/chef-scripts/main/uninstall-chef-client.ps1"  # Add URL for uninstall script
+$chefUninstallScriptUrl = "https://raw.githubusercontent.com/Wasim49/Github-Repo/refs/heads/main/actual-scripts/chef/uninstall-chef-client.ps1"  # Add URL for uninstall script
 
 # Define the local folder where scripts will be saved
 $scriptsdir = "c:\scripts"
