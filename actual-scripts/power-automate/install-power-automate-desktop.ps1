@@ -36,3 +36,29 @@ if ($padInstalled) {
     }
 }
 
+
+# Install PAC CLI
+# Define the URL for the Power PAC MSI package
+$pacMsiUrl = "https://aka.ms/PowerAppsCLI"  # Replace with the correct download URL
+
+# Define the local folder to store the downloaded MSI
+$scriptsdir = "C:\scripts"
+$pacMsiFilePath = "$scriptsdir\PowerPlatformCLI.msi"
+
+# Create the C:\scripts folder if it doesn't exist
+if (-not (Test-Path -Path $scriptsdir)) {
+    New-Item -Path $scriptsdir -ItemType Directory
+    Write-Host "Created scripts folder at $scriptsdir."
+}
+
+# Download the Power PAC MSI package
+Write-Host "Downloading Power PAC MSI installer..."
+Invoke-WebRequest -Uri $pacMsiUrl -OutFile $pacMsiFilePath
+Write-Host "Power PAC MSI installer downloaded to $pacMsiFilePath."
+
+# Silently execute the MSI installer
+Write-Host "Silently executing the Power PAC MSI installer..."
+Start-Process msiexec.exe -ArgumentList "/i", "$pacMsiFilePath", "/quiet", "/norestart" -Wait
+
+Write-Host "Power PAC MSI installation completed successfully."
+
