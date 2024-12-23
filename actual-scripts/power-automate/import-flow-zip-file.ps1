@@ -1,5 +1,5 @@
 # Step 1: Define the GitHub URL and local download path
-$githubUrl = "https://github.com/Wasim49/Github-Repo/blob/main/actual-scripts/power-automate/power-automate-flow-files.zip"  # Replace with your GitHub URL
+$githubUrl = "https://raw.githubusercontent.com/Wasim49/Github-Repo/main/actual-scripts/power-automate/power-automate-flow-files.zip"  # Replace with your GitHub URL
 $downloadPath = "C:\scripts\power-automate-flow-files.zip"  # Path to where the ZIP file will be downloaded
 
 # Step 2: Download the solution file from GitHub
@@ -38,4 +38,7 @@ try {
 }
 
 Write-Host "Process completed successfully!"
+
+
+
 
