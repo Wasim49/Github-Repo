@@ -8,7 +8,6 @@ Write-Host "Starting execution of Power Automate wrapper script..."
 # Define the URLs for the installation and flow files (these will already be downloaded in this case)
 $powerAutomateInstallScriptUrl = "https://raw.githubusercontent.com/Wasim49/Github-Repo/refs/heads/main/actual-scripts/power-automate/install-power-automate-desktop.ps1"
 $powerAutomateFlowFilesUrl = "https://raw.githubusercontent.com/Wasim49/Github-Repo/refs/heads/main/actual-scripts/power-automate/import-flow-zip-file.ps1"
-$powerAutomateFlowFilesZipUrl = "https://github.com/Wasim49/Github-Repo/blob/main/actual-scripts/power-automate/power-automate-flow-files.zip"
 
 # Define the local folder where scripts and flow files will be saved
 $scriptsdir = "c:\scripts"
@@ -16,7 +15,6 @@ $scriptsdir = "c:\scripts"
 # Define the local file paths for the installation script and flow files
 $powerAutomateInstallScriptPath = "$scriptsdir\install-power-automate-desktop.ps1"
 $powerAutomateFlowFilesPath = "$scriptsdir\import-flow-zip-file.ps1"
-$powerAutomateFlowFilesZipPath = "$scriptsdir\power-automate-flow-files.zip"
 
 # Create the c:\scripts folder if it doesn't exist
 if (-not (Test-Path -Path $scriptsdir)) {
@@ -34,10 +32,6 @@ Write-Host "Downloading Power Automate Flow Import Script..."
 Invoke-WebRequest -Uri $powerAutomateFlowFilesUrl -OutFile $powerAutomateFlowFilesPath
 Write-Host "Power Automate Flow Import Script downloaded to $powerAutomateFlowFilesPath."
 
-# Download the Power Automate Flow Files Zip
-Write-Host "Downloading Power Automate Flow Files Zip..."
-Invoke-WebRequest -Uri $powerAutomateFlowFilesZipUrl -OutFile $powerAutomateFlowFilesZipPath
-Write-Host "Power Automate Flow Files Zip downloaded to $powerAutomateFlowFilesZipPath."
 
 # Get the current logged-in user's username
 $currentUser = [System.Environment]::UserName
