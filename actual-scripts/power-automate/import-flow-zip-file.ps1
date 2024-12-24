@@ -1,6 +1,7 @@
-# Step 1: Define the local path for the ZIP file and the JSON file
-$downloadPath = "C:\scripts\power-automate-flow-files.zip"
-$jsonPath = "C:\scripts\environment-details.json"
+# Step 1: Define the zip  and local download path
+$downloadPath = "C:\scripts\power-automate-flow-files.zip"  # Path to where the ZIP file will be downloaded
+$jsonPath = "C:\scripts\environment-details.json"  # JSON file to save environment details
+
 
 # Step 2: Authenticate with Power Platform CLI
 $authProfileName = 'MyAuthProfile'
@@ -90,6 +91,7 @@ try {
     Write-Host "Error importing solution: $_"
     exit
 }
+
 
 
 
