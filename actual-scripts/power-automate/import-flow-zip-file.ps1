@@ -1,9 +1,19 @@
-# Step 1: Define the zip  and local download path
+# Step 1: Define the GitHub URL and local download path
+$githubUrl = "https://raw.githubusercontent.com/Wasim49/Github-Repo/main/actual-scripts/power-automate/power-automate-flow-files.zip"  # Replace with your GitHub URL
 $downloadPath = "C:\scripts\power-automate-flow-files.zip"  # Path to where the ZIP file will be downloaded
 $jsonPath = "C:\scripts\environment-details.json"  # JSON file to save environment details
 
+# Step 2: Download the solution file from GitHub
+Write-Host "Downloading solution file from GitHub..."
+try {
+    Invoke-WebRequest -Uri $githubUrl -OutFile $downloadPath
+    Write-Host "Solution file downloaded successfully from GitHub to $downloadPath."
+} catch {
+    Write-Host "Error downloading solution: $_"
+    exit
+}
 
-# Step 2: Authenticate with Power Platform CLI
+# Step 3: Authenticate with Power Platform CLI
 $authProfileName = 'MyAuthProfile'
 $username = 'cloud_user_p_cc4d9a26@realhandsonlabs.com'
 $password = 'Z18d6rgeHWpc0Sr%AUBw'
@@ -21,7 +31,7 @@ try {
     }
 }
 
-# Step 3: Create a new environment
+# Step 4: Create a new environment
 $environmentName = 'target-env'
 $environmentType = 'Trial'
 
@@ -35,7 +45,7 @@ try {
     exit
 }
 
-# Step 4: List environments and extract details to JSON
+# Step 5: List environments and extract details to JSON
 Write-Host "Listing environments and extracting details to JSON..."
 try {
     $envListOutput = pac admin list
@@ -66,7 +76,7 @@ try {
     exit
 }
 
-# Step 5: Retrieve environment URL from JSON file
+# Step 6: Retrieve environment URL from JSON file
 Write-Host "Retrieving environment URL from JSON..."
 try {
     $environmentDetails = Get-Content $jsonPath | ConvertFrom-Json
@@ -82,7 +92,7 @@ try {
     exit
 }
 
-# Step 6: Import the solution
+# Step 7: Import the solution
 Write-Host "Importing the solution..."
 try {
     pac solution import --path $downloadPath --environment $environmentUrl
