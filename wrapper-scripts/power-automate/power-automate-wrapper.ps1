@@ -5,7 +5,7 @@ Start-Transcript -Path $logfilepath -Append
 
 Write-Host "Starting execution of Power Automate wrapper script..."
 
-# Define the URLs for the installation and flow files
+# Define the URLs for the installation and flow files (these will already be downloaded in this case)
 $powerAutomateInstallScriptUrl = "https://raw.githubusercontent.com/Wasim49/Github-Repo/refs/heads/main/actual-scripts/power-automate/install-power-automate-desktop.ps1"
 $powerAutomateFlowFilesUrl = "https://raw.githubusercontent.com/Wasim49/Github-Repo/refs/heads/main/actual-scripts/power-automate/import-flow-zip-file.ps1"
 
@@ -14,7 +14,7 @@ $scriptsdir = "c:\scripts"
 
 # Define the local file paths for the installation script and flow files
 $powerAutomateInstallScriptPath = "$scriptsdir\install-power-automate-desktop.ps1"
-$powerAutomateFlowFilesPath = "$scriptsdir\power-automate-flow-files.zip"
+$powerAutomateFlowFilesPath = "$scriptsdir\import-flow-zip-file.ps1"
 
 # Create the c:\scripts folder if it doesn't exist
 if (-not (Test-Path -Path $scriptsdir)) {
@@ -22,30 +22,31 @@ if (-not (Test-Path -Path $scriptsdir)) {
     Write-Host "Created scripts folder at $scriptsdir."
 }
 
-# Download the Power Automate installation script
+# Download the Power Automate Installation script
 Write-Host "Downloading Power Automate Installation Script..."
 Invoke-WebRequest -Uri $powerAutomateInstallScriptUrl -OutFile $powerAutomateInstallScriptPath
 Write-Host "Power Automate Installation Script downloaded to $powerAutomateInstallScriptPath."
 
-# Download the Power Automate flow files
-Write-Host "Downloading Power Automate Flow Files..."
+# Download the Power Automate Flow Import script
+Write-Host "Downloading Power Automate Flow Import Script..."
 Invoke-WebRequest -Uri $powerAutomateFlowFilesUrl -OutFile $powerAutomateFlowFilesPath
-Write-Host "Power Automate Flow Files downloaded to $powerAutomateFlowFilesPath."
+Write-Host "Power Automate Flow Import Script downloaded to $powerAutomateFlowFilesPath."
 
-# Execute the Power Automate installation script
+# Execute the Power Automate Installation script
 Write-Host "Executing Power Automate Installation Script..."
 . $powerAutomateInstallScriptPath
 
 Write-Host "Power Automate Installation script executed successfully."
 
-# Execute the flow import script
+# Execute the Power Automate Flow Import script
 Write-Host "Executing Power Automate Flow Import Script..."
-. $powerAutomateFlowFilesUrl  # Executes the script to import the flow
+. $powerAutomateFlowFilesPath
 
 Write-Host "Power Automate Flow Import script executed successfully."
 
 # Stop the transcript to end capturing the session
 Stop-Transcript
 
-# End of the script
+Write-Host "Wrapper script executed successfully."
+
 
