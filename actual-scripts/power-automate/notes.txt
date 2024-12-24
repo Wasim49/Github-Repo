@@ -1,0 +1,75 @@
+
+The aim of this workload is to install power automate silently, then install PAC (power automate cli), then  via the second script downlaod the flow files/zip into the taget pc 
+
+and utilize the pac auth create command to log into target power automate service and import the downloaded zip into that service. 
+
+YOU HAVE TO HAVE  A TRIAL VERSION OF POWER AUTOMATE DESKTOP APP FOR THE IMPORT SCRIPT TO WORK, OTHERWISE IT WONT WORK
+
+
+---------------------------------------------------------------------------
+
+1)  first  modify the import-flow-zip-file.ps1 file and push it it to github
+
+
+make sure check the zip file, it contains the flows related files but you ccanot access them easily 
+
+chnage  the username and password in import-flow-zip-file.ps1 file
+
+
+2) create vm and go inisde  vm 
+
+install power automate extension on edge brwoser, you  might even get a automatic prompt
+
+then open power automate desktop app, then clcik settings icon on top right, then uncheck "disable display confrmation diaglog"
+
+make sure to turn on trial version isnide  power automate desktop app, otherwise the import script wont wokr and wont capture details into json
+
+
+3) exuete the second import sceond script -import-flow-zip-file.ps1
+
+
+4) in the same power automate desktop app, on top, chnage envrionent to "target-env"
+
+
+5) go to desktop flows, you flow would be there. you can manually  exceute it 
+
+
+6) or open powershell, then type the paste the below. make usre to chnage the bit from ms-pow..... you need to put the run url of flow. rightclikc on flow and clikc properties and you
+
+would see the run url
+
+"C:\Program Files (x86)\Power Automate Desktop\PAD.Console.Host.exe" "ms-powerautomate:/console/flow/run?environmentid=8d003e0a-e302-e66f-ad64-74108403dc0e&workflowid=d39e0626-0e34-44de-b326-c5f0c9260aee&source=Other"
+
+
+
+
+-----------------------------------------------------------------------------
+
+The below two are the most important commands 
+
+The below is what authenticates into power automate service
+
+pac auth create --name 'MyAuthProfile' --environment 'https://orgfd0ed784.crm11.dynamics.com' --username 'cloud_user_p_e8a24d7c@realhandsonlabs.com' --password 'OWl$weJrExQAoV76zOyC'
+
+
+
+the below is what sends folder/flow files to power automate service or environment, it doesnt send it to power automate desktop flow but it will reflect under power automate desktop flow later. after
+executing the below command successfully, it wil reflect later. you may have to sync or choose environment in your power bi desktop app. 
+
+pac solution import --path "C:\scripts\power-automate-flow-files.zip" --environment https://orgfd0ed784.crm11.dynamics.com
+
+
+
+the below is the service principle method, this is having issues like after excetuing this line you may have to add user group or permssion to this service principle 
+
+pac auth create --name MyOrg-SPN --applicationId d01c158e-894a-4855-b650-3f708eaffd3b --clientSecret pSG8Q~lEKESwBPYiWgdvYK6Zme6LePZmfzMxwdcC --tenant 84f1e4ea-8554-43e1-8709-f0b8589ea118
+
+
+the below is to show the environment url
+
+ pac admin list
+
+
+ the below is to create a envrionnet 
+
+pac admin create --name 'target-env' --type Trial
