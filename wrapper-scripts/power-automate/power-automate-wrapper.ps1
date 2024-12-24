@@ -8,7 +8,7 @@ Write-Host "Starting execution of Power Automate wrapper script..."
 # Define the URLs for the installation and flow files (these will already be downloaded in this case)
 $powerAutomateInstallScriptUrl = "https://raw.githubusercontent.com/Wasim49/Github-Repo/refs/heads/main/actual-scripts/power-automate/install-power-automate-desktop.ps1"
 $powerAutomateFlowFilesUrl = "https://raw.githubusercontent.com/Wasim49/Github-Repo/refs/heads/main/actual-scripts/power-automate/import-flow-zip-file.ps1"
-$powerAutomateFlowFilesZipUrl = "https://raw.githubusercontent.com/Wasim49/Github-Repo/refs/heads/main/actual-scripts/power-automate/power-automate-flow-files.zip"
+$powerAutomateFlowFilesZipUrl = "https://github.com/Wasim49/Github-Repo/blob/main/actual-scripts/power-automate/power-automate-flow-files.zip"
 
 # Define the local folder where scripts and flow files will be saved
 $scriptsdir = "c:\scripts"
@@ -63,6 +63,7 @@ Write-Host "Power Automate Flow Import script executed successfully in new sessi
 Stop-Transcript
 
 Write-Host "Wrapper script executed successfully."
+
 
 
 
