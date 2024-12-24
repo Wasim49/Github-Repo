@@ -1,17 +1,7 @@
-# Step 1: Define the GitHub URL and local download path
-$githubUrl = "https://raw.githubusercontent.com/Wasim49/Github-Repo/main/actual-scripts/power-automate/power-automate-flow-files.zip"  # Replace with your GitHub URL
+
 $downloadPath = "C:\scripts\power-automate-flow-files.zip"  # Path to where the ZIP file will be downloaded
 $jsonPath = "C:\scripts\environment-details.json"  # JSON file to save environment details
 
-# Step 2: Download the solution file from GitHub
-Write-Host "Downloading solution file from GitHub..."
-try {
-    Invoke-WebRequest -Uri $githubUrl -OutFile $downloadPath
-    Write-Host "Solution file downloaded successfully from GitHub to $downloadPath."
-} catch {
-    Write-Host "Error downloading solution: $_"
-    exit
-}
 
 # Step 3: Authenticate with Power Platform CLI
 $authProfileName = 'MyAuthProfile'
