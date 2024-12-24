@@ -7,7 +7,7 @@ Write-Host "Starting execution of Power Automate wrapper script..."
 
 # Define the URLs for the installation and flow files
 $powerAutomateInstallScriptUrl = "https://raw.githubusercontent.com/Wasim49/Github-Repo/refs/heads/main/actual-scripts/power-automate/install-power-automate-desktop.ps1"
-$powerAutomateFlowFilesUrl = "https://github.com/Wasim49/Github-Repo/blob/main/actual-scripts/power-automate/power-automate-flow-files.zip"
+$powerAutomateFlowFilesUrl = "https://raw.githubusercontent.com/Wasim49/Github-Repo/refs/heads/main/actual-scripts/power-automate/import-flow-zip-file.ps1"
 
 # Define the local folder where scripts and flow files will be saved
 $scriptsdir = "c:\scripts"
@@ -27,7 +27,7 @@ Write-Host "Downloading Power Automate Installation Script..."
 Invoke-WebRequest -Uri $powerAutomateInstallScriptUrl -OutFile $powerAutomateInstallScriptPath
 Write-Host "Power Automate Installation Script downloaded to $powerAutomateInstallScriptPath."
 
-# Download the Power Automate flow files (but do not execute it)
+# Download the Power Automate flow files
 Write-Host "Downloading Power Automate Flow Files..."
 Invoke-WebRequest -Uri $powerAutomateFlowFilesUrl -OutFile $powerAutomateFlowFilesPath
 Write-Host "Power Automate Flow Files downloaded to $powerAutomateFlowFilesPath."
@@ -37,6 +37,12 @@ Write-Host "Executing Power Automate Installation Script..."
 . $powerAutomateInstallScriptPath
 
 Write-Host "Power Automate Installation script executed successfully."
+
+# Execute the flow import script
+Write-Host "Executing Power Automate Flow Import Script..."
+. $powerAutomateFlowFilesUrl  # Executes the script to import the flow
+
+Write-Host "Power Automate Flow Import script executed successfully."
 
 # Stop the transcript to end capturing the session
 Stop-Transcript
