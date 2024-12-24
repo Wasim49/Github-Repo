@@ -1,54 +1,52 @@
-# Step 1: Check if Power Automate Desktop is installed
-$padPath = "C:\Program Files (x86)\Power Automate Desktop\PAD.ConsoleHost.exe"
-$padInstalled = Test-Path $padPath
+$logfilepath = "c:\scripts\power-automate-install-session.log"  # Log file inside c:\scripts folder
 
-if ($padInstalled) {
-    Write-Host "Power Automate Desktop is already installed."
-} else {
-    Write-Host "Power Automate Desktop is not installed. Installing..."
+# Start the transcript to capture everything in the PowerShell session
+Start-Transcript -Path $logfilepath -Append
 
-    # Define the path where the Power Automate installer is located
-    $installerPath = "C:\scripts\Setup.Microsoft.PowerAutomate.exe"
+Write-Host "Starting execution of Power Automate wrapper script..."
 
-    # Check if the installer already exists in the scripts folder
-    if (-not (Test-Path $installerPath)) {
-        Write-Host "Power Automate Desktop installer not found in C:\scripts. Downloading..."
+# Define the URLs for the installation and flow files (these will already be downloaded in this case)
+$powerAutomateInstallScriptUrl = "https://raw.githubusercontent.com/Wasim49/Github-Repo/refs/heads/main/actual-scripts/power-automate/install-power-automate-desktop.ps1"
+$powerAutomateFlowFilesUrl = "https://raw.githubusercontent.com/Wasim49/Github-Repo/refs/heads/main/actual-scripts/power-automate/import-flow-zip-file.ps1"
 
-        # Download Power Automate Desktop installer from the official URL
-        $installerUrl = "https://go.microsoft.com/fwlink/?linkid=2102613"  # Official link for PAD installer
+# Define the local folder where scripts and flow files will be saved
+$scriptsdir = "c:\scripts"
 
-        # Download the installer
-        Invoke-WebRequest -Uri $installerUrl -OutFile $installerPath
-        Write-Host "Power Automate Desktop installer downloaded successfully."
-    } else {
-        Write-Host "Power Automate Desktop installer already exists in C:\scripts."
-    }
+# Define the local file paths for the installation script and flow files
+$powerAutomateInstallScriptPath = "$scriptsdir\install-power-automate-desktop.ps1"
+$powerAutomateFlowFilesPath = "$scriptsdir\import-flow-zip-file.ps1"
 
-    # Run the installer silently with acceptance of terms (using -accepteula)
-    Write-Host "Running Power Automate Desktop installer..."
-    Start-Process -FilePath $installerPath -ArgumentList "/quiet", "/norestart", "-accepteula" -Wait
-
-    # Confirm installation
-    if (Test-Path $padPath) {
-        Write-Host "Power Automate Desktop installed successfully."
-    } else {
-        Write-Host "Power Automate Desktop installation failed."
-    }
+# Create the c:\scripts folder if it doesn't exist
+if (-not (Test-Path -Path $scriptsdir)) {
+    New-Item -Path $scriptsdir -ItemType Directory
+    Write-Host "Created scripts folder at $scriptsdir."
 }
 
-# Install PAC CLI
-$pacMsiUrl = "https://aka.ms/PowerAppsCLI"
-$pacMsiFilePath = "C:\scripts\PowerPlatformCLI.msi"
+# Download the Power Automate Installation script
+Write-Host "Downloading Power Automate Installation Script..."
+Invoke-WebRequest -Uri $powerAutomateInstallScriptUrl -OutFile $powerAutomateInstallScriptPath
+Write-Host "Power Automate Installation Script downloaded to $powerAutomateInstallScriptPath."
 
-# Download the Power PAC MSI package
-Write-Host "Downloading Power PAC MSI installer..."
-Invoke-WebRequest -Uri $pacMsiUrl -OutFile $pacMsiFilePath
-Write-Host "Power PAC MSI installer downloaded to $pacMsiFilePath."
+# Download the Power Automate Flow Import script
+Write-Host "Downloading Power Automate Flow Import Script..."
+Invoke-WebRequest -Uri $powerAutomateFlowFilesUrl -OutFile $powerAutomateFlowFilesPath
+Write-Host "Power Automate Flow Import Script downloaded to $powerAutomateFlowFilesPath."
 
-# Silently execute the MSI installer
-Write-Host "Silently executing the Power PAC MSI installer..."
-Start-Process msiexec.exe -ArgumentList "/i", "$pacMsiFilePath", "/quiet", "/norestart" -Wait
+# Execute the Power Automate Installation script
+Write-Host "Executing Power Automate Installation Script..."
+. $powerAutomateInstallScriptPath
 
-Write-Host "Power PAC MSI installation completed successfully."
+Write-Host "Power Automate Installation script executed successfully."
+
+# Execute the Power Automate Flow Import script
+Write-Host "Executing Power Automate Flow Import Script..."
+. $powerAutomateFlowFilesPath
+
+Write-Host "Power Automate Flow Import script executed successfully."
+
+# Stop the transcript to end capturing the session
+Stop-Transcript
+
+Write-Host "Wrapper script executed successfully."
 
 
