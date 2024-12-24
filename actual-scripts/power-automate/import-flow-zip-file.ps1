@@ -1,11 +1,12 @@
-# Step 1: Define the local path for the ZIP file and the JSON file
-$downloadPath = "C:\scripts\power-automate-flow-files.zip"
-$jsonPath = "C:\scripts\environment-details.json"
+# Step 1: Define the zip  and local download path
+$downloadPath = "C:\scripts\power-automate-flow-files.zip"  # Path to where the ZIP file will be downloaded
+$jsonPath = "C:\scripts\environment-details.json"  # JSON file to save environment details
+
 
 # Step 2: Authenticate with Power Platform CLI
 $authProfileName = 'MyAuthProfile'
-$username = 'cloud_user_p_347b75d3@realhandsonlabs.com'
-$password = 'z9H72A89cg6EnN%w3VjX'
+$username = 'cloud_user_p_cc4d9a26@realhandsonlabs.com'
+$password = 'Z18d6rgeHWpc0Sr%AUBw'
 
 Write-Host "Authenticating with Power Platform CLI..."
 try {
