@@ -15,8 +15,8 @@ try {
 
 # Step 3: Authenticate with Power Platform CLI
 $authProfileName = 'MyAuthProfile'
-$username = 'cloud_user_p_cc4d9a26@realhandsonlabs.com'
-$password = 'Z18d6rgeHWpc0Sr%AUBw'
+$username = 'cloud_user_p_579f9d7b@realhandsonlabs.com'
+$password = '9duAo#9HgU1Lca6FTnyX'
 
 Write-Host "Authenticating with Power Platform CLI..."
 try {
