@@ -37,16 +37,16 @@ then open power automate desktop app, then clcik settings icon on top right, the
 make sure to turn on trial version isnide  power automate desktop app, otherwise the import script wont wokr and wont capture details into json (this is optional/another way since you have alredy achieved this in abouve section 2)
 
 
-3) exuete the second import sceond script -import-flow-zip-file.ps1
+4) exuete the second import sceond script -import-flow-zip-file.ps1
 
 
-4) in the same power automate desktop app, on top, chnage envrionent to "target-env"
+5) in the same power automate desktop app, on top, chnage envrionent to "target-env"
 
 
-5) go to desktop flows, your flow would be there. you can manually  exceute it 
+6) go to desktop flows, your flow would be there. you can manually  exceute it 
 
 
-6) or open powershell, then type the paste the below. make usre to chnage the bit from ms-pow..... you need to put the run url of flow. rightclikc on flow and clikc properties and you
+7) or open powershell, then type the paste the below. make usre to chnage the bit from ms-pow..... you need to put the run url of flow. rightclikc on flow and clikc properties and you
 
 would see the run url
 
@@ -85,3 +85,15 @@ the below is to show the environment url
  the below is to create a envrionnet 
 
 pac admin create --name 'target-env' --type Trial
+
+
+
+the below is to list all the flows in an environment 
+
+Get-AdminFlow -EnvironmentName 93c5b485-a997-e55f-b868-dd6490659501
+
+
+
+the below is to list all flows by therir display names 
+
+Get-AdminFlow | Format-Table EnvironmentName, DisplayName, Name
