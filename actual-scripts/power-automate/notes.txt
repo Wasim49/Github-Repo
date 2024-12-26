@@ -11,18 +11,30 @@ YOU HAVE TO HAVE  A TRIAL VERSION OF POWER AUTOMATE DESKTOP APP FOR THE IMPORT S
 1)  first  modify the import-flow-zip-file.ps1 file and push it it to github
 
 
-make sure check the zip file, it contains the flows related files but you ccanot access them easily 
+make sure to check the zip file, it contains the flows related files but you cannot access them easily 
 
-chnage  the username and password in import-flow-zip-file.ps1 file
+change  the username and password in import-flow-zip-file.ps1 file
 
 
-2) create vm and go inisde  vm 
+2) login to power automate on browser  using ACG account
+
+right click on the settings icon on the top right
+
+then click on 'view my licenses', most of them would be crossed out you would not have the RPA trial there yet
+
+then go to left side panel and click my flows 
+
+then do to desktop flows and click start trial, now if you to go 'view my licenses' on th seettings you have have the this RPA license 'Power Automate Plan 2 Trial'
+
+
+
+3) create vm and go inisde  vm 
 
 install power automate extension on edge brwoser, you  might even get a automatic prompt
 
 then open power automate desktop app, then clcik settings icon on top right, then uncheck "disable display confrmation diaglog"
 
-make sure to turn on trial version isnide  power automate desktop app, otherwise the import script wont wokr and wont capture details into json
+make sure to turn on trial version isnide  power automate desktop app, otherwise the import script wont wokr and wont capture details into json (this is optional/another way since you have alredy achieved this in abouve section 2)
 
 
 3) exuete the second import sceond script -import-flow-zip-file.ps1
@@ -31,7 +43,7 @@ make sure to turn on trial version isnide  power automate desktop app, otherwise
 4) in the same power automate desktop app, on top, chnage envrionent to "target-env"
 
 
-5) go to desktop flows, you flow would be there. you can manually  exceute it 
+5) go to desktop flows, your flow would be there. you can manually  exceute it 
 
 
 6) or open powershell, then type the paste the below. make usre to chnage the bit from ms-pow..... you need to put the run url of flow. rightclikc on flow and clikc properties and you
