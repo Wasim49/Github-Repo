@@ -1,42 +1,44 @@
-# Define the installation paths
-$scriptsdir = "C:\scripts"
-$chefInstallPath = "C:\opscode\chef"
-$downloadUrl = "https://packages.chef.io/files/stable/chef/17.10.0/windows/2022/chef-client-17.10.0-1-x64.msi"
-$msiPath = "C:\scripts\chef-client.msi"
-$extraFolder = "C:\chef"
-
-
-# Create directories if they don't exist
-if (-Not (Test-Path -Path $scriptsdir)) {
-    New-Item -ItemType Directory -Path $scriptsdir
-}
-
-# Download Chef Client installer
-Write-Host "Downloading Chef Client..."
-Invoke-WebRequest -Uri $downloadUrl -OutFile $msiPath
-
-# Install Chef Client
-Write-Host "Installing Chef Client..."
-if (Test-Path $msiPath) {
-    Start-Process msiexec.exe -ArgumentList "/i C:\scripts\chef-client.msi ADDLOCAL=`"ChefClientFeature`" /qn" -Wait
-
-    # Verify installation by checking if chef-client.bat exists
-    if (Test-Path "$chefInstallPath\bin\chef-client.bat") {
-        Write-Host "Chef Client installed successfully."
-
-        # Check the version of Chef Client installed
-        $chefClientVersion = & "$chefInstallPath\bin\chef-client.bat" --version
-        Write-Host "Chef Client version: $chefClientVersion"
-    } else {
-        Write-Error "Chef Client installation failed. Verify MSI installer and prerequisites."
-    }
+# Ensure Chocolatey is installed
+if (Get-Command choco -ErrorAction SilentlyContinue) {
+    Write-Output "Chocolatey is already installed. Upgrading Chocolatey..."
+    choco upgrade chocolatey -y
 } else {
-    Write-Error "MSI file not found at $msiPath. Download might have failed."
+    Write-Output "Installing Chocolatey..."
+    Set-ExecutionPolicy Bypass -Scope Process -Force
+    [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+    iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 }
 
-# Remove that empty chef folder
-Remove-Item -Path $extraFolder -Recurse -Force
-Write-Host "Removed unnecessary 'chef' folder inside C directory"
+# Install or Upgrade Chef Client
+Write-Output "Installing or upgrading Chef Infra Client..."
+choco install chef-client -y
+
+# Verify Chef Client installation path
+$chefClientPath = "C:\opscode\chef\bin"
+if (Test-Path $chefClientPath) {
+    Write-Output "Chef Infra Client is installed at: $chefClientPath"
+} else {
+    Write-Output "Chef Infra Client installation path not found. Please check the installation."
+    Exit 1
+}
+
+# Add Chef Client to PATH if not already present
+$envPath = [Environment]::GetEnvironmentVariable("PATH", [System.EnvironmentVariableTarget]::Machine)
+if ($envPath -notlike "*$chefClientPath*") {
+    Write-Output "Adding Chef Infra Client to PATH..."
+    [Environment]::SetEnvironmentVariable("PATH", "$envPath;$chefClientPath", [System.EnvironmentVariableTarget]::Machine)
+    Write-Output "PATH updated. Restart your session to apply changes."
+} else {
+    Write-Output "Chef Infra Client is already in the PATH."
+}
+
+# Verify the installation
+try {
+    $chefVersion = chef-client --version
+    Write-Output "Chef Infra Client installed successfully: $chefVersion"
+} catch {
+    Write-Output "Chef Client binary not found. Ensure PATH is updated and restart your session."
+}
 
 
 # Install prerequisites (WinRM, Firewall, etc.)
