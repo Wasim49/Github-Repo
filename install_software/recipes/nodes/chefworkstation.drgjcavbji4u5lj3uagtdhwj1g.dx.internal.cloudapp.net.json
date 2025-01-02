@@ -1,0 +1,1213 @@
+{
+  "name": "chefworkstation.drgjcavbji4u5lj3uagtdhwj1g.dx.internal.cloudapp.net",
+  "normal": {
+    "tags": [
+
+    ]
+  },
+  "default": {
+    "audit": {
+      "inspec_backend_cache": true,
+      "reporter": null,
+      "fetcher": null,
+      "insecure": null,
+      "quiet": true,
+      "profiles": {
+
+      },
+      "inputs": {
+
+      },
+      "attributes": {
+
+      },
+      "waiver_file": null,
+      "json_file": {
+        "location": "C:\\chef\\compliance_reports\\compliance-20250102140110.json"
+      },
+      "run_time_limit": 1.0,
+      "result_message_limit": 10000,
+      "result_include_backtrace": false,
+      "control_results_limit": 50,
+      "chef_node_attribute_enabled": true,
+      "compliance_phase": false,
+      "interval": {
+        "enabled": false,
+        "time": 1440
+      }
+    }
+  },
+  "automatic": {
+    "kernel": {
+      "os_info": {
+        "boot_device": "\\Device\\HarddiskVolume3",
+        "build_number": "19045",
+        "build_type": "Multiprocessor Free",
+        "caption": "Microsoft Windows 10 Pro",
+        "code_set": "1252",
+        "country_code": "1",
+        "csd_version": null,
+        "cs_name": "chefworkstation",
+        "current_time_zone": 0,
+        "data_execution_prevention_32_bit_applications": true,
+        "data_execution_prevention_available": true,
+        "data_execution_prevention_drivers": true,
+        "data_execution_prevention_support_policy": 2,
+        "debug": false,
+        "description": "",
+        "distributed": false,
+        "encryption_level": 256,
+        "foreground_application_boost": 2,
+        "install_date": "20250102104937.000000+000",
+        "large_system_cache": null,
+        "last_boot_up_time": "20250102104617.574219+000",
+        "local_date_time": "20250102140118.959000+000",
+        "locale": "0409",
+        "manufacturer": "Microsoft Corporation",
+        "max_number_of_processes": -1,
+        "max_process_memory_size": "137438953344",
+        "mui_languages": [
+          "en-US"
+        ],
+        "name": "Microsoft Windows 10 Pro|C:\\Windows|\\Device\\Harddisk0\\Partition4",
+        "number_of_licensed_users": 0,
+        "number_of_processes": 160,
+        "number_of_users": 1,
+        "operating_system_sku": 48,
+        "organization": null,
+        "os_architecture": "64-bit",
+        "os_language": 1033,
+        "os_product_suite": 256,
+        "os_type": 18,
+        "other_type_description": null,
+        "pae_enabled": null,
+        "plus_product_id": null,
+        "plus_version_number": null,
+        "portable_operating_system": false,
+        "primary": true,
+        "product_type": 1,
+        "registered_user": null,
+        "serial_number": "00331-10000-00001-AA689",
+        "service_pack_major_version": 0,
+        "service_pack_minor_version": 0,
+        "size_stored_in_paging_files": "1966080",
+        "status": "OK",
+        "suite_mask": 272,
+        "system_device": "\\Device\\HarddiskVolume4",
+        "system_directory": "C:\\Windows\\system32",
+        "system_drive": "C:",
+        "total_visible_memory_size": "8387460",
+        "version": "10.0.19045",
+        "windows_directory": "C:\\Windows"
+      },
+      "name": "Microsoft Windows 10 Pro",
+      "release": "10.0.19045",
+      "version": "10.0.19045  Build 19045",
+      "os": "WINNT",
+      "product_type": "Workstation",
+      "server_core": false,
+      "cs_info": {
+        "admin_password_status": 3,
+        "automatic_managed_pagefile": false,
+        "automatic_reset_boot_option": true,
+        "automatic_reset_capability": true,
+        "boot_option_on_limit": null,
+        "boot_option_on_watch_dog": null,
+        "boot_rom_supported": true,
+        "boot_status": [
+          0,
+          0,
+          0,
+          127,
+          4,
+          255,
+          254,
+          0,
+          0,
+          28
+        ],
+        "bootup_state": "Normal boot",
+        "caption": "chefworkstation",
+        "chassis_bootup_state": 3,
+        "chassis_sku_number": "Virtual Machine",
+        "current_time_zone": 0,
+        "daylight_in_effect": null,
+        "description": "AT/AT COMPATIBLE",
+        "dns_host_name": "chefworkstation",
+        "domain": "WORKGROUP",
+        "domain_role": 0,
+        "enable_daylight_savings_time": true,
+        "front_panel_reset_status": 3,
+        "hypervisor_present": true,
+        "infrared_supported": false,
+        "initial_load_info": null,
+        "install_date": null,
+        "keyboard_password_status": 3,
+        "last_load_info": null,
+        "manufacturer": "Microsoft Corporation",
+        "model": "Virtual Machine",
+        "name": "chefworkstation",
+        "name_format": null,
+        "network_server_mode_enabled": true,
+        "number_of_logical_processors": 2,
+        "number_of_processors": 1,
+        "oem_string_array": [
+          "[MS_VM_CERT/SHA1/9b80ca0d5dd061ec9da4e494f4c3fd1196270c22]",
+          "00000000000000000000000000000000",
+          "To be filled by OEM"
+        ],
+        "part_of_domain": false,
+        "pause_after_reset": "-1",
+        "pc_system_type": 1,
+        "pc_system_type_ex": 1,
+        "power_management_capabilities": null,
+        "power_management_supported": null,
+        "power_on_password_status": 3,
+        "power_state": 0,
+        "power_supply_state": 3,
+        "primary_owner_contact": null,
+        "primary_owner_name": null,
+        "reset_capability": 1,
+        "reset_count": -1,
+        "reset_limit": -1,
+        "roles": [
+          "LM_Workstation",
+          "LM_Server",
+          "NT"
+        ],
+        "status": "OK",
+        "support_contact_description": null,
+        "system_family": "Virtual Machine",
+        "system_sku_number": "None",
+        "system_startup_delay": null,
+        "system_startup_options": null,
+        "system_startup_setting": null,
+        "system_type": "x64-based PC",
+        "thermal_state": 3,
+        "total_physical_memory": "8588759040",
+        "user_name": null,
+        "wake_up_type": 6,
+        "workgroup": "WORKGROUP"
+      },
+      "machine": "x86_64",
+      "system_type": "Desktop"
+    },
+    "memory": {
+      "swap": {
+        "total": "1966080kB",
+        "free": "1896068kB"
+      },
+      "total": "8387460kB",
+      "free": "4102996kB"
+    },
+    "network": {
+      "interfaces": {
+        "0x6": {
+          "configuration": {
+            "ip_address": [
+              "10.0.0.4",
+              "fe80::faf4:dc0d:67df:ecbf"
+            ],
+            "arp_always_source_route": null,
+            "arp_use_ether_snap": null,
+            "caption": "[00000001] Microsoft Hyper-V Network Adapter",
+            "database_path": "%SystemRoot%\\System32\\drivers\\etc",
+            "dead_gw_detect_enabled": null,
+            "default_ip_gateway": [
+              "10.0.0.1"
+            ],
+            "default_tos": null,
+            "default_ttl": null,
+            "description": "Microsoft Hyper-V Network Adapter",
+            "dhcp_enabled": true,
+            "dhcp_lease_expires": "19561215073208.000000+000",
+            "dhcp_lease_obtained": "20250102104844.000000+000",
+            "dhcp_server": "168.63.129.16",
+            "dns_domain": "drgjcavbji4u5lj3uagtdhwj1g.dx.internal.cloudapp.net",
+            "dns_domain_suffix_search_order": [
+              "drgjcavbji4u5lj3uagtdhwj1g.dx.internal.cloudapp.net"
+            ],
+            "dns_enabled_for_wins_resolution": false,
+            "dns_host_name": "chefworkstation",
+            "dns_server_search_order": [
+              "168.63.129.16"
+            ],
+            "domain_dns_registration_enabled": false,
+            "forward_buffer_memory": null,
+            "full_dns_registration_enabled": true,
+            "gateway_cost_metric": [
+              0
+            ],
+            "igmp_level": null,
+            "index": 1,
+            "interface_index": 6,
+            "ip_connection_metric": 10,
+            "ip_enabled": true,
+            "ip_filter_security_enabled": false,
+            "ip_port_security_enabled": null,
+            "ip_sec_permit_ip_protocols": [
+
+            ],
+            "ip_sec_permit_tcp_ports": [
+
+            ],
+            "ip_sec_permit_udp_ports": [
+
+            ],
+            "ip_subnet": [
+              "255.255.255.0",
+              "64"
+            ],
+            "ip_use_zero_broadcast": null,
+            "ipx_address": null,
+            "ipx_enabled": null,
+            "ipx_frame_type": null,
+            "ipx_media_type": null,
+            "ipx_network_number": null,
+            "ipx_virtual_net_number": null,
+            "keep_alive_interval": null,
+            "keep_alive_time": null,
+            "mac_address": "00:22:48:0C:68:3C",
+            "mtu": null,
+            "num_forward_packets": null,
+            "pmtubh_detect_enabled": null,
+            "pmtu_discovery_enabled": null,
+            "service_name": "netvsc",
+            "setting_id": "{CBA43E73-5A0B-4114-A40D-22853A147589}",
+            "tcpip_netbios_options": 0,
+            "tcp_max_connect_retransmissions": null,
+            "tcp_max_data_retransmissions": null,
+            "tcp_num_connections": null,
+            "tcp_use_rfc1122_urgent_pointer": null,
+            "tcp_window_size": null,
+            "wins_enable_lm_hosts_lookup": true,
+            "wins_host_lookup_file": null,
+            "wins_primary_server": null,
+            "wins_scope_id": "",
+            "wins_secondary_server": null
+          },
+          "instance": {
+            "adapter_type": "Ethernet 802.3",
+            "adapter_type_id": 0,
+            "auto_sense": null,
+            "availability": 3,
+            "caption": "[00000001] Microsoft Hyper-V Network Adapter",
+            "config_manager_error_code": 0,
+            "config_manager_user_config": false,
+            "description": "Microsoft Hyper-V Network Adapter",
+            "device_id": "1",
+            "error_cleared": null,
+            "error_description": null,
+            "guid": "{CBA43E73-5A0B-4114-A40D-22853A147589}",
+            "index": 1,
+            "install_date": null,
+            "installed": true,
+            "interface_index": 6,
+            "last_error_code": null,
+            "mac_address": "00:22:48:0C:68:3C",
+            "manufacturer": "Microsoft",
+            "max_number_controlled": 0,
+            "max_speed": null,
+            "name": "Microsoft Hyper-V Network Adapter",
+            "net_connection_id": "Ethernet",
+            "net_connection_status": 2,
+            "net_enabled": true,
+            "network_addresses": null,
+            "permanent_address": null,
+            "physical_adapter": true,
+            "pnp_device_id": "VMBUS\\{F8615163-DF3E-46C5-913F-F2D2F965ED0E}\\{0022480C-683C-0022-480C-683C0022480C}",
+            "power_management_capabilities": null,
+            "power_management_supported": false,
+            "product_name": "Microsoft Hyper-V Network Adapter",
+            "service_name": "netvsc",
+            "speed": "40000000000",
+            "status": null,
+            "status_info": null,
+            "system_name": "chefworkstation",
+            "time_of_last_reset": "20250102104617.574219+000"
+          },
+          "counters": {
+
+          },
+          "addresses": {
+            "10.0.0.4": {
+              "prefixlen": "24",
+              "netmask": "255.255.255.0",
+              "broadcast": "10.0.0.255",
+              "family": "inet"
+            },
+            "fe80::faf4:dc0d:67df:ecbf": {
+              "prefixlen": "64",
+              "family": "inet6",
+              "scope": "Link"
+            },
+            "00:22:48:0C:68:3C": {
+              "family": "lladdr"
+            }
+          },
+          "mtu": null,
+          "type": "Ethernet 802.3",
+          "arp": {
+            "10.0.0.1": "12:34:56:78:9a:bc",
+            "10.0.0.255": "ff:ff:ff:ff:ff:ff",
+            "224.0.0.22": "01:00:5e:00:00:16",
+            "224.0.0.251": "01:00:5e:00:00:fb",
+            "224.0.0.252": "01:00:5e:00:00:fc",
+            "239.255.255.250": "01:00:5e:7f:ff:fa",
+            "255.255.255.255": "ff:ff:ff:ff:ff:ff"
+          },
+          "encapsulation": "Ethernet"
+        }
+      },
+      "default_gateway": "10.0.0.1",
+      "default_interface": "0x6"
+    },
+    "counters": {
+      "network": {
+
+      }
+    },
+    "ipaddress": "10.0.0.4",
+    "macaddress": "00:22:48:0C:68:3C",
+    "ip6address": "fe80::faf4:dc0d:67df:ecbf",
+    "os": "windows",
+    "os_version": "10.0.19045",
+    "platform": "windows",
+    "platform_version": "10.0.19045",
+    "platform_family": "windows",
+    "uptime_seconds": 11702,
+    "uptime": "3 hours 15 minutes 02 seconds",
+    "dmi": {
+      "chassis": {
+        "all_records": [
+          {
+            "AudibleAlarm": null,
+            "BreachDescription": null,
+            "CableManagementStrategy": null,
+            "Caption": "System Enclosure",
+            "ChassisTypes": [
+              3
+            ],
+            "CreationClassName": "Win32_SystemEnclosure",
+            "CurrentRequiredOrProduced": null,
+            "Depth": null,
+            "Description": "System Enclosure",
+            "HeatGeneration": null,
+            "Height": null,
+            "HotSwappable": null,
+            "InstallDate": null,
+            "LockPresent": false,
+            "Manufacturer": "Microsoft Corporation",
+            "Model": null,
+            "Name": "System Enclosure",
+            "NumberOfPowerCords": null,
+            "OtherIdentifyingInfo": null,
+            "PartNumber": null,
+            "PoweredOn": null,
+            "Removable": null,
+            "Replaceable": null,
+            "SecurityBreach": null,
+            "SecurityStatus": 2,
+            "SerialNumber": "0820-8678-1265-2636-2239-9447-33",
+            "ServiceDescriptions": null,
+            "ServicePhilosophy": null,
+            "SKU": null,
+            "SMBIOSAssetTag": "7783-7084-3265-9085-8269-3286-77",
+            "Status": null,
+            "Tag": "System Enclosure 0",
+            "TypeDescriptions": null,
+            "Version": "Hyper-V UEFI Release v4.1",
+            "VisibleAlarm": null,
+            "Weight": null,
+            "Width": null
+          }
+        ],
+        "description": "System Enclosure",
+        "manufacturer": "Microsoft Corporation",
+        "serial_number": "0820-8678-1265-2636-2239-9447-33",
+        "smbios_asset_tag": "7783-7084-3265-9085-8269-3286-77",
+        "tag": "System Enclosure 0",
+        "version": "Hyper-V UEFI Release v4.1",
+        "family": "System Enclosure"
+      },
+      "processor": {
+        "all_records": [
+          {
+            "AddressWidth": 64,
+            "Architecture": 9,
+            "AssetTag": "None",
+            "Availability": 3,
+            "Caption": "Intel64 Family 6 Model 79 Stepping 1",
+            "Characteristics": 252,
+            "ConfigManagerErrorCode": null,
+            "ConfigManagerUserConfig": null,
+            "CpuStatus": 1,
+            "CreationClassName": "Win32_Processor",
+            "CurrentClockSpeed": 2295,
+            "CurrentVoltage": 7,
+            "DataWidth": 64,
+            "Description": "Intel64 Family 6 Model 79 Stepping 1",
+            "DeviceID": "CPU0",
+            "ErrorCleared": null,
+            "ErrorDescription": null,
+            "ExtClock": 100,
+            "Family": 179,
+            "InstallDate": null,
+            "L2CacheSize": null,
+            "L2CacheSpeed": null,
+            "L3CacheSize": 0,
+            "L3CacheSpeed": 0,
+            "LastErrorCode": null,
+            "Level": 6,
+            "LoadPercentage": 9,
+            "Manufacturer": "GenuineIntel",
+            "MaxClockSpeed": 2295,
+            "Name": "Intel(R) Xeon(R) CPU E5-2673 v4 @ 2.30GHz",
+            "NumberOfCores": 1,
+            "NumberOfEnabledCore": 2,
+            "NumberOfLogicalProcessors": 2,
+            "OtherFamilyDescription": null,
+            "PartNumber": "None",
+            "PNPDeviceID": null,
+            "PowerManagementCapabilities": null,
+            "PowerManagementSupported": false,
+            "ProcessorId": "0000000000000000",
+            "ProcessorType": 3,
+            "Revision": 20225,
+            "Role": "CPU",
+            "SecondLevelAddressTranslationExtensions": true,
+            "SerialNumber": "None",
+            "SocketDesignation": "None",
+            "Status": "OK",
+            "StatusInfo": 3,
+            "Stepping": null,
+            "SystemCreationClassName": "Win32_ComputerSystem",
+            "SystemName": "chefworkstation",
+            "ThreadCount": 2,
+            "UniqueId": null,
+            "UpgradeMethod": 6,
+            "Version": "",
+            "VirtualizationFirmwareEnabled": true,
+            "VMMonitorModeExtensions": true,
+            "VoltageCaps": null
+          }
+        ],
+        "asset_tag": "None",
+        "description": "Intel64 Family 6 Model 79 Stepping 1",
+        "device_id": "CPU0",
+        "manufacturer": "GenuineIntel",
+        "part_number": "None",
+        "processor_id": "0000000000000000",
+        "role": "CPU",
+        "serial_number": "None",
+        "socket_designation": "None",
+        "status": "OK",
+        "system_name": "chefworkstation",
+        "version": "",
+        "family": "Intel(R) Xeon(R) CPU E5-2673 v4 @ 2.30GHz"
+      },
+      "bios": {
+        "all_records": [
+          {
+            "BiosCharacteristics": [
+              3,
+              9,
+              15,
+              16,
+              19,
+              28,
+              32,
+              42,
+              43,
+              44
+            ],
+            "BIOSVersion": [
+              "VRTUAL - 1",
+              "Hyper-V UEFI Release v4.1",
+              "Microsoft - 100032"
+            ],
+            "BuildNumber": null,
+            "Caption": "Hyper-V UEFI Release v4.1",
+            "CodeSet": null,
+            "CurrentLanguage": null,
+            "Description": "Hyper-V UEFI Release v4.1",
+            "EmbeddedControllerMajorVersion": 255,
+            "EmbeddedControllerMinorVersion": 255,
+            "IdentificationCode": null,
+            "InstallableLanguages": null,
+            "InstallDate": null,
+            "LanguageEdition": null,
+            "ListOfLanguages": null,
+            "Manufacturer": "Microsoft Corporation",
+            "Name": "Hyper-V UEFI Release v4.1",
+            "OtherTargetOS": null,
+            "PrimaryBIOS": true,
+            "ReleaseDate": "20240308000000.000000+000",
+            "SerialNumber": "0000-0009-0700-6641-6773-9083-94",
+            "SMBIOSBIOSVersion": "Hyper-V UEFI Release v4.1",
+            "SMBIOSMajorVersion": 3,
+            "SMBIOSMinorVersion": 1,
+            "SMBIOSPresent": true,
+            "SoftwareElementID": "Hyper-V UEFI Release v4.1",
+            "SoftwareElementState": 3,
+            "Status": "OK",
+            "SystemBiosMajorVersion": 4,
+            "SystemBiosMinorVersion": 1,
+            "TargetOperatingSystem": 0,
+            "Version": "VRTUAL - 1"
+          }
+        ],
+        "description": "Hyper-V UEFI Release v4.1",
+        "manufacturer": "Microsoft Corporation",
+        "release_date": "20240308000000.000000+000",
+        "serial_number": "0000-0009-0700-6641-6773-9083-94",
+        "smbiosbios_version": "Hyper-V UEFI Release v4.1",
+        "software_element_id": "Hyper-V UEFI Release v4.1",
+        "status": "OK",
+        "version": "VRTUAL - 1",
+        "family": "Hyper-V UEFI Release v4.1"
+      },
+      "system": {
+        "all_records": [
+          {
+            "Caption": "Computer System Product",
+            "Description": "Computer System Product",
+            "IdentifyingNumber": "0000-0009-0700-6641-6773-9083-94",
+            "Name": "Virtual Machine",
+            "SKUNumber": null,
+            "UUID": "7DDF5959-CD02-47AA-BECF-1E779C0A3846",
+            "Vendor": "Microsoft Corporation",
+            "Version": "Hyper-V UEFI Release v4.1"
+          }
+        ],
+        "description": "Computer System Product",
+        "uuid": "7DDF5959-CD02-47AA-BECF-1E779C0A3846",
+        "version": "Hyper-V UEFI Release v4.1",
+        "manufacturer": "Microsoft Corporation",
+        "serial_number": "0000-0009-0700-6641-6773-9083-94",
+        "family": "Virtual Machine"
+      },
+      "base_board": {
+        "all_records": [
+          {
+            "Caption": "Base Board",
+            "ConfigOptions": null,
+            "CreationClassName": "Win32_BaseBoard",
+            "Depth": null,
+            "Description": "Base Board",
+            "Height": null,
+            "HostingBoard": true,
+            "HotSwappable": false,
+            "InstallDate": null,
+            "Manufacturer": "Microsoft Corporation",
+            "Model": null,
+            "Name": "Base Board",
+            "OtherIdentifyingInfo": null,
+            "PartNumber": null,
+            "PoweredOn": true,
+            "Product": "Virtual Machine",
+            "Removable": false,
+            "Replaceable": false,
+            "RequirementsDescription": null,
+            "RequiresDaughterBoard": false,
+            "SerialNumber": "0000-0013-7492-4168-6453-2705-98",
+            "SKU": null,
+            "SlotLayout": null,
+            "SpecialRequirements": null,
+            "Status": "OK",
+            "Tag": "Base Board",
+            "Version": "Hyper-V UEFI Release v4.1",
+            "Weight": null,
+            "Width": null
+          }
+        ],
+        "description": "Base Board",
+        "manufacturer": "Microsoft Corporation",
+        "product": "Virtual Machine",
+        "serial_number": "0000-0013-7492-4168-6453-2705-98",
+        "status": "OK",
+        "tag": "Base Board",
+        "version": "Hyper-V UEFI Release v4.1",
+        "family": "Base Board"
+      }
+    },
+    "cpu": {
+      "0": {
+        "cores": 1,
+        "vendor_id": "GenuineIntel",
+        "family": "179",
+        "model": "20225",
+        "stepping": "1",
+        "physical_id": "CPU0",
+        "model_name": "Intel(R) Xeon(R) CPU E5-2673 v4 @ 2.30GHz",
+        "description": "Intel64 Family 6 Model 79 Stepping 1",
+        "mhz": "2295",
+        "cache_size": " KB"
+      },
+      "total": 2,
+      "cores": 1,
+      "real": 1
+    },
+    "virtualization": {
+      "systems": {
+        "hyperv": "guest"
+      },
+      "system": "hyperv",
+      "role": "guest"
+    },
+    "azure": {
+      "metadata": {
+        "compute": {
+          "additionalCapabilities": {
+            "hibernationEnabled": "false"
+          },
+          "azEnvironment": "AzurePublicCloud",
+          "customData": "",
+          "evictionPolicy": "",
+          "extendedLocation": {
+            "name": "",
+            "type": ""
+          },
+          "host": {
+            "id": ""
+          },
+          "hostGroup": {
+            "id": ""
+          },
+          "isHostCompatibilityLayerVm": "false",
+          "licenseType": "Windows_Client",
+          "location": "westus",
+          "name": "chefworkstation",
+          "offer": "Windows-10",
+          "osProfile": {
+            "adminUsername": "vmadmin",
+            "computerName": "chefworkstation",
+            "disablePasswordAuthentication": ""
+          },
+          "osType": "Windows",
+          "placementGroupId": "",
+          "plan": {
+            "name": "",
+            "product": "",
+            "publisher": ""
+          },
+          "platformFaultDomain": "0",
+          "platformSubFaultDomain": "",
+          "platformUpdateDomain": "0",
+          "priority": "",
+          "provider": "Microsoft.Compute",
+          "publicKeys": [
+
+          ],
+          "publisher": "MicrosoftWindowsDesktop",
+          "resourceGroupName": "1-c5831d78-playground-sandbox",
+          "resourceId": "/subscriptions/28e1e42a-4438-4c30-9a5f-7d7b488fd883/resourceGroups/1-c5831d78-playground-sandbox/providers/Microsoft.Compute/virtualMachines/chefworkstation",
+          "securityProfile": {
+            "encryptionAtHost": "false",
+            "secureBootEnabled": "false",
+            "securityType": "",
+            "virtualTpmEnabled": "false"
+          },
+          "sku": "win10-22h2-pro-g2",
+          "storageProfile": {
+            "dataDisks": [
+
+            ],
+            "imageReference": {
+              "communityGalleryImageId": "",
+              "exactVersion": "19045.5247.241206",
+              "id": "",
+              "offer": "Windows-10",
+              "publisher": "MicrosoftWindowsDesktop",
+              "sharedGalleryImageId": "",
+              "sku": "win10-22h2-pro-g2",
+              "version": "latest"
+            },
+            "osDisk": {
+              "caching": "ReadWrite",
+              "createOption": "FromImage",
+              "diffDiskSettings": {
+                "option": ""
+              },
+              "diskSizeGB": "127",
+              "encryptionSettings": {
+                "diskEncryptionKey": {
+                  "secretUrl": "",
+                  "sourceVault": {
+                    "id": ""
+                  }
+                },
+                "enabled": "false",
+                "keyEncryptionKey": {
+                  "keyUrl": "",
+                  "sourceVault": {
+                    "id": ""
+                  }
+                }
+              },
+              "image": {
+                "uri": ""
+              },
+              "managedDisk": {
+                "id": "/subscriptions/28e1e42a-4438-4c30-9a5f-7d7b488fd883/resourceGroups/1-c5831d78-playground-sandbox/providers/Microsoft.Compute/disks/chefworkstation_OsDisk_1_b7f8cb5b5b574e2d8328c3d53d18ac3b",
+                "storageAccountType": "Premium_LRS"
+              },
+              "name": "chefworkstation_OsDisk_1_b7f8cb5b5b574e2d8328c3d53d18ac3b",
+              "osType": "Windows",
+              "vhd": {
+                "uri": ""
+              },
+              "writeAcceleratorEnabled": "false"
+            },
+            "resourceDisk": {
+              "size": "16384"
+            }
+          },
+          "subscriptionId": "28e1e42a-4438-4c30-9a5f-7d7b488fd883",
+          "tags": "",
+          "tagsList": [
+
+          ],
+          "userData": "",
+          "version": "19045.5247.241206",
+          "virtualMachineScaleSet": {
+            "id": ""
+          },
+          "vmId": "7ddf5959-cd02-47aa-becf-1e779c0a3846",
+          "vmScaleSetName": "",
+          "vmSize": "Standard_D2s_v3",
+          "zone": ""
+        },
+        "network": {
+          "interfaces": {
+            "0022480C683C": {
+              "mac": "0022480C683C",
+              "public_ipv6": [
+
+              ],
+              "public_ipv4": [
+
+              ],
+              "local_ipv6": [
+
+              ],
+              "local_ipv4": [
+                "10.0.0.4"
+              ]
+            }
+          },
+          "public_ipv4": [
+
+          ],
+          "local_ipv4": [
+            "10.0.0.4"
+          ],
+          "public_ipv6": [
+
+          ],
+          "local_ipv6": [
+
+          ]
+        }
+      }
+    },
+    "languages": {
+      "powershell": {
+        "version": "5.1.19041.5247",
+        "ws_man_stack_version": "3.0",
+        "serialization_version": "1.1.0.1",
+        "clr_version": "4.0.30319.42000",
+        "build_version": "10.0.19041.5247",
+        "compatible_versions": [
+          "1.0",
+          "2.0",
+          "3.0",
+          "4.0",
+          "5.0",
+          "5.1.19041.5247"
+        ],
+        "remoting_protocol_version": "2.3"
+      },
+      "ruby": {
+        "platform": "x64-mingw-ucrt",
+        "version": "3.1.6",
+        "release_date": "2024-05-29",
+        "target": "x86_64-w64-mingw32",
+        "target_cpu": "x64",
+        "target_vendor": "w64",
+        "target_os": "mingw32",
+        "host": "x86_64-w64-mingw32",
+        "host_cpu": "x64",
+        "host_os": "mingw32",
+        "host_vendor": "w64",
+        "bin_dir": "C:/opscode/chef-workstation/embedded/bin",
+        "ruby_bin": "C:/opscode/chef-workstation/embedded/bin/ruby",
+        "gem_bin": "C:/opscode/chef-workstation/embedded/bin/gem",
+        "gems_dir": "C:/opscode/chef-workstation/embedded/lib/ruby/gems/3.1.0"
+      }
+    },
+    "chef_packages": {
+      "chef": {
+        "version": "18.6.2",
+        "chef_root": "C:/opscode/chef-workstation/embedded/lib/ruby/gems/3.1.0/gems/chef-18.6.2-universal-mingw-ucrt/lib",
+        "chef_effortless": null
+      },
+      "ohai": {
+        "version": "18.1.18",
+        "ohai_root": "C:/opscode/chef-workstation/embedded/lib/ruby/gems/3.1.0/gems/ohai-18.1.18/lib/ohai"
+      }
+    },
+    "hostname": "chefworkstation",
+    "machinename": "chefworkstation",
+    "fqdn": "chefworkstation.drgjcavbji4u5lj3uagtdhwj1g.dx.internal.cloudapp.net",
+    "domain": "drgjcavbji4u5lj3uagtdhwj1g.dx.internal.cloudapp.net",
+    "cloud": {
+      "local_ipv4_addrs": [
+        "10.0.0.4"
+      ],
+      "provider": "azure",
+      "local_ipv4": "10.0.0.4"
+    },
+    "command": {
+
+    },
+    "filesystem": {
+      "by_device": {
+        "windows": {
+          "kb_size": 135771664,
+          "kb_available": 105764667,
+          "kb_used": 30006997,
+          "percent_used": 22,
+          "fs_type": "ntfs",
+          "drive_type": 3,
+          "drive_type_string": "local",
+          "drive_type_human": "Local Fixed Disk",
+          "volume_name": "Windows",
+          "encryption_status": "FullyDecrypted",
+          "mounts": [
+            "C:"
+          ]
+        },
+        "temporary storage": {
+          "kb_size": 17177767,
+          "kb_available": 15110414,
+          "kb_used": 2067353,
+          "percent_used": 12,
+          "fs_type": "ntfs",
+          "drive_type": 3,
+          "drive_type_string": "local",
+          "drive_type_human": "Local Fixed Disk",
+          "volume_name": "Temporary Storage",
+          "encryption_status": "FullyDecrypted",
+          "mounts": [
+            "D:"
+          ]
+        },
+        "": {
+          "kb_size": 0,
+          "kb_available": 0,
+          "kb_used": 0,
+          "percent_used": 0,
+          "fs_type": "",
+          "drive_type": 5,
+          "drive_type_string": "cd",
+          "drive_type_human": "CD-ROM Disc",
+          "volume_name": "",
+          "mounts": [
+            "E:"
+          ]
+        }
+      },
+      "by_mountpoint": {
+        "C:": {
+          "kb_size": 135771664,
+          "kb_available": 105764667,
+          "kb_used": 30006997,
+          "percent_used": 22,
+          "fs_type": "ntfs",
+          "drive_type": 3,
+          "drive_type_string": "local",
+          "drive_type_human": "Local Fixed Disk",
+          "volume_name": "Windows",
+          "encryption_status": "FullyDecrypted",
+          "devices": [
+            "windows"
+          ]
+        },
+        "D:": {
+          "kb_size": 17177767,
+          "kb_available": 15110414,
+          "kb_used": 2067353,
+          "percent_used": 12,
+          "fs_type": "ntfs",
+          "drive_type": 3,
+          "drive_type_string": "local",
+          "drive_type_human": "Local Fixed Disk",
+          "volume_name": "Temporary Storage",
+          "encryption_status": "FullyDecrypted",
+          "devices": [
+            "temporary storage"
+          ]
+        },
+        "E:": {
+          "kb_size": 0,
+          "kb_available": 0,
+          "kb_used": 0,
+          "percent_used": 0,
+          "fs_type": "",
+          "drive_type": 5,
+          "drive_type_string": "cd",
+          "drive_type_human": "CD-ROM Disc",
+          "volume_name": "",
+          "devices": [
+            ""
+          ]
+        }
+      },
+      "by_pair": {
+        "windows,C:": {
+          "kb_size": 135771664,
+          "kb_available": 105764667,
+          "kb_used": 30006997,
+          "percent_used": 22,
+          "mount": "C:",
+          "fs_type": "ntfs",
+          "drive_type": 3,
+          "drive_type_string": "local",
+          "drive_type_human": "Local Fixed Disk",
+          "volume_name": "Windows",
+          "device": "windows",
+          "encryption_status": "FullyDecrypted"
+        },
+        "temporary storage,D:": {
+          "kb_size": 17177767,
+          "kb_available": 15110414,
+          "kb_used": 2067353,
+          "percent_used": 12,
+          "mount": "D:",
+          "fs_type": "ntfs",
+          "drive_type": 3,
+          "drive_type_string": "local",
+          "drive_type_human": "Local Fixed Disk",
+          "volume_name": "Temporary Storage",
+          "device": "temporary storage",
+          "encryption_status": "FullyDecrypted"
+        },
+        ",E:": {
+          "kb_size": 0,
+          "kb_available": 0,
+          "kb_used": 0,
+          "percent_used": 0,
+          "mount": "E:",
+          "fs_type": "",
+          "drive_type": 5,
+          "drive_type_string": "cd",
+          "drive_type_human": "CD-ROM Disc",
+          "volume_name": "",
+          "device": ""
+        }
+      }
+    },
+    "filesystem2": {
+      "by_device": {
+        "windows": {
+          "kb_size": 135771664,
+          "kb_available": 105764667,
+          "kb_used": 30006997,
+          "percent_used": 22,
+          "fs_type": "ntfs",
+          "drive_type": 3,
+          "drive_type_string": "local",
+          "drive_type_human": "Local Fixed Disk",
+          "volume_name": "Windows",
+          "encryption_status": "FullyDecrypted",
+          "mounts": [
+            "C:"
+          ]
+        },
+        "temporary storage": {
+          "kb_size": 17177767,
+          "kb_available": 15110414,
+          "kb_used": 2067353,
+          "percent_used": 12,
+          "fs_type": "ntfs",
+          "drive_type": 3,
+          "drive_type_string": "local",
+          "drive_type_human": "Local Fixed Disk",
+          "volume_name": "Temporary Storage",
+          "encryption_status": "FullyDecrypted",
+          "mounts": [
+            "D:"
+          ]
+        },
+        "": {
+          "kb_size": 0,
+          "kb_available": 0,
+          "kb_used": 0,
+          "percent_used": 0,
+          "fs_type": "",
+          "drive_type": 5,
+          "drive_type_string": "cd",
+          "drive_type_human": "CD-ROM Disc",
+          "volume_name": "",
+          "mounts": [
+            "E:"
+          ]
+        }
+      },
+      "by_mountpoint": {
+        "C:": {
+          "kb_size": 135771664,
+          "kb_available": 105764667,
+          "kb_used": 30006997,
+          "percent_used": 22,
+          "fs_type": "ntfs",
+          "drive_type": 3,
+          "drive_type_string": "local",
+          "drive_type_human": "Local Fixed Disk",
+          "volume_name": "Windows",
+          "encryption_status": "FullyDecrypted",
+          "devices": [
+            "windows"
+          ]
+        },
+        "D:": {
+          "kb_size": 17177767,
+          "kb_available": 15110414,
+          "kb_used": 2067353,
+          "percent_used": 12,
+          "fs_type": "ntfs",
+          "drive_type": 3,
+          "drive_type_string": "local",
+          "drive_type_human": "Local Fixed Disk",
+          "volume_name": "Temporary Storage",
+          "encryption_status": "FullyDecrypted",
+          "devices": [
+            "temporary storage"
+          ]
+        },
+        "E:": {
+          "kb_size": 0,
+          "kb_available": 0,
+          "kb_used": 0,
+          "percent_used": 0,
+          "fs_type": "",
+          "drive_type": 5,
+          "drive_type_string": "cd",
+          "drive_type_human": "CD-ROM Disc",
+          "volume_name": "",
+          "devices": [
+            ""
+          ]
+        }
+      },
+      "by_pair": {
+        "windows,C:": {
+          "kb_size": 135771664,
+          "kb_available": 105764667,
+          "kb_used": 30006997,
+          "percent_used": 22,
+          "mount": "C:",
+          "fs_type": "ntfs",
+          "drive_type": 3,
+          "drive_type_string": "local",
+          "drive_type_human": "Local Fixed Disk",
+          "volume_name": "Windows",
+          "device": "windows",
+          "encryption_status": "FullyDecrypted"
+        },
+        "temporary storage,D:": {
+          "kb_size": 17177767,
+          "kb_available": 15110414,
+          "kb_used": 2067353,
+          "percent_used": 12,
+          "mount": "D:",
+          "fs_type": "ntfs",
+          "drive_type": 3,
+          "drive_type_string": "local",
+          "drive_type_human": "Local Fixed Disk",
+          "volume_name": "Temporary Storage",
+          "device": "temporary storage",
+          "encryption_status": "FullyDecrypted"
+        },
+        ",E:": {
+          "kb_size": 0,
+          "kb_available": 0,
+          "kb_used": 0,
+          "percent_used": 0,
+          "mount": "E:",
+          "fs_type": "",
+          "drive_type": 5,
+          "drive_type_string": "cd",
+          "drive_type_human": "CD-ROM Disc",
+          "volume_name": "",
+          "device": ""
+        }
+      }
+    },
+    "fips": {
+      "kernel": {
+        "enabled": false
+      }
+    },
+    "habitat": {
+      "version": "1.6.1041/20240411142831",
+      "packages": [
+        "https://www.chef.io/end-user-license-agreement"
+      ]
+    },
+    "keys": {
+      "ssh": {
+
+      }
+    },
+    "ohai_time": 1735826485.2625763,
+    "packages": {
+      "Chef Workstation v24.12.1073": {
+        "version": "24.12.1073.1",
+        "publisher": "\"Chef Software, Inc. <maintainers@chef.io>\"",
+        "installdate": "20250102"
+      },
+      "Microsoft Edge": {
+        "version": "131.0.2903.112",
+        "publisher": "Microsoft Corporation",
+        "installdate": "20250102"
+      },
+      "Microsoft Edge WebView2 Runtime": {
+        "version": "131.0.2903.112",
+        "publisher": "Microsoft Corporation",
+        "installdate": "20250102"
+      },
+      "Microsoft OneDrive": {
+        "version": "21.220.1024.0005",
+        "publisher": "Microsoft Corporation"
+      },
+      "Microsoft Visual Studio Code (User)": {
+        "version": "1.96.2",
+        "publisher": "Microsoft Corporation",
+        "installdate": "20250102"
+      }
+    },
+    "root_group": "Administrators",
+    "shard_seed": 241816679,
+    "time": {
+      "timezone": "Coordinated Universal Time"
+    },
+    "system_enclosure": {
+      "manufacturer": "Microsoft Corporation",
+      "serialnumber": "0820-8678-1265-2636-2239-9447-33"
+    },
+    "chef_guid": "21fbaa95-f860-4abf-a565-b5fedc53b55a",
+    "name": "chefworkstation.drgjcavbji4u5lj3uagtdhwj1g.dx.internal.cloudapp.net",
+    "chef_environment": "_default",
+    "recipes": [
+
+    ],
+    "expanded_run_list": [
+
+    ],
+    "roles": [
+
+    ]
+  }
+}
